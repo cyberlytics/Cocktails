@@ -7,7 +7,7 @@ const app = express()
 app.use(corse())
 app.use(express.json())
 
-app.use("/api/v1/cocktailsmixer", cocktails)
+app.use("/api/v1/cocktailsmixer/cocktails", cocktails)
 app.use("*", (req, res) => {res.status(400).json({error: "not found"})})
 
 export default app
