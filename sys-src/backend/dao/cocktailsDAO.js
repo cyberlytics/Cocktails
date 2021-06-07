@@ -28,9 +28,7 @@ export default class CocktailsDAO{
         }
 
         try{
-            console.debug(typeof(courser))
             const cocktailsList = await courser.toArray() 
-
             return cocktailsList
         }
         catch(e){

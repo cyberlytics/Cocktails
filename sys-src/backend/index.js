@@ -1,9 +1,11 @@
 import app from "./server.js"
 import mongodb from "mongodb"
 import dotenv from "dotenv"
+import mongoose from "mongoose"
 import CocktailsDAO from "./dao/cocktailsDAO.js"
 
 dotenv.config()
+
 const MongoClient = mongodb.MongoClient
 
 MongoClient.connect( 
@@ -11,7 +13,7 @@ MongoClient.connect(
     {
         poolSize:5,
         wtimeout:2500,
-        useNewUrlParser:true
+        useUnifiedTopology: true
     }
 )
 .catch(err => {
