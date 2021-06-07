@@ -26,15 +26,15 @@ const ListOfCocktails = props => {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">{cocktail.name}</h5>
-                  <p className="card-text">
-                    <div>
-                      {cocktail.ingredients.Vodka}
-                    </div>
-                    <div>
-                      <strong >{"Kaffeebohne: "}</strong>
-                      {cocktail.ingredients.Kaffebohne}
-                    </div>
-                  </p>
+                    {
+                      cocktail.ingredients.map( (ingredient, i) => (
+                        <div key={`ingredient-test-${i}`}>
+                          <b>{ingredient.name}</b> : {" "}
+                          {ingredient.quantity.quantity}
+                          {ingredient.quantity.unit}
+                        </div>
+                      ))
+                    }
                 </div>
               </div>
             </div>
