@@ -1,13 +1,12 @@
 import app from "./server.js"
 import mongodb from "mongodb"
 import dotenv from "dotenv"
-import mongoose from "mongoose"
 import CocktailsDAO from "./dao/cocktailsDAO.js"
 
 dotenv.config()
 
-const MongoClient = mongodb.MongoClient
 
+const MongoClient = mongodb.MongoClient
 MongoClient.connect( 
     process.env.MONGODB_URI,
     {
