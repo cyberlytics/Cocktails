@@ -31,8 +31,7 @@ class App extends Component {
     async componentDidMount() {
         try {
             const isLoggedInId = localStorage.getItem('isLoggedInId');
-
-            let res = await fetch(apiurl + '/isLoggedIn/' + isLoggedInId, {
+            let res = await fetch(apiurl + '/login/' + isLoggedInId, {
             method: 'get',
             headers: {
               'Accept' : 'application/json',

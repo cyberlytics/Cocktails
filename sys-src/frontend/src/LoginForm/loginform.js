@@ -1,7 +1,10 @@
+//Import modules
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
 
-import IconText from '../inputs/icontextfield';
+//Import own UI-Elements
+import IconTextField from '../inputs/icontextfield';
+
+//Import local ressources
 import { styles } from './styles';
 import { apiurl } from '../api.js';
 
@@ -14,7 +17,8 @@ class LoginForm extends Component {
             username: '',
             password: '',
             buttonDisabled: false
-        }
+        };
+        this.onKeyUp = this.handleEnter.bind(this);
     }
 
     resetForm() {
@@ -31,7 +35,17 @@ class LoginForm extends Component {
         })
     }
 
+    handleEnter(e) {
+        console.log("enter");
+        if (e.charCode === 13) {
+            this.handleSubmit();
+        }
+    }
+
     async handleSubmit() {
+        console.log("submit");
+        console.log(this.state.username);
+        console.log(this.state.password);
         if (!this.state.username) {
             return;
         }
@@ -74,16 +88,22 @@ class LoginForm extends Component {
         }
     }
 
+    handleKeypress = e => {
+        if (e.key === "Enter") {
+          this.handleSubmit();  
+        }
+    };
+
     render() { 
         return (
-            <div style={styles.styleDiv} className="login-form">
+            <div style={styles.styleDiv} className="login-form" onKeyPress={this.handleKeypress}>
                 <h1 style={styles.styleHeadline}>Login</h1>
-                <IconText style={styles.styleTextField} type="username" placeholder="Username" 
-                value={this.state.username ? this.state.username : ''} onChange={ (val) => this.setInputValue('username', val)}/>
-                <IconText style={styles.styleTextField} type="password" placeholder="Password"
-                value={this.state.password ? this.state.password : ''} onChange={ (val) => this.setInputValue('password', val)}/>
-                <Button style={styles.styleButton} variant="contained" type="submit" onClick={() => this.handleSubmit() }
-                disabled={this.state.buttonDisabled}>Login</Button>
+                <div style={styles.styleInputField}><IconTextField type="username" placeholder="Username" iconclass="fas fa-user"
+                value={this.state.username ? this.state.username : ''} onChange={ (val) => this.setInputValue('username', val)} /></div>
+                <div style={styles.styleInputField}><IconTextField type="password" placeholder="Password" iconclass="fas fa-lock"
+                value={this.state.password ? this.state.password : ''} onChange={ (val) => this.setInputValue('password', val)} /></div>
+                <div style={styles.styleInputField}><button style={styles.styleButton} variant="contained" type="submit" class="btn btn-primary"
+                onClick={() => this.handleSubmit() } disabled={this.state.buttonDisabled}>Login</button></div>
             </div>
         );
     }
