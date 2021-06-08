@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //Import own UI-Elements
 import LoginForm from '../LoginForm/loginform';
+import CocktailsList from '../components/List_Of_Cocktails';
 
 //Import local ressources
 import { styles } from './style';
@@ -35,7 +36,7 @@ class MainContainer extends Component {
                         </Route>
 
                         <Route path="/">
-                            <h1>Default Route</h1>
+                            <CocktailsList/>
                         </Route>
                     </Switch>
                 </BrowserRouter>
