@@ -10,22 +10,39 @@ export const styles = {
         backgroundColor: 'rgba(0, 0, 0, 60%)',
         boxSizing: 'border-box',
     },
-    styleTextField : {
-        backgroundColor: 'rgba(115, 194, 251, 80%)',
-        margin: '10px',
-        display: 'flex',
+    styleInputField : {
+        margin: '10px 10px',
+        overflow: 'auto',
     },    
     styleButton : {
         backgroundColor: 'rgba(115, 194, 251, 80%)',
-        margin: '10px',
-        display: 'block',
-        width: '95%',
+        marginTop: '5px',
+        width: '99%',
         height: '50px',
-        fontSize: '18px',
+        fontSize: '22px',
+        padding: '0',
+        border: 'none',
     },
     styleHeadline : {
         color: 'white',
         textAlign: 'center',
         paddingTop : '10px',
-    }
+    },
+    // styleAbort: {
+    //     color: 'white',
+    //     fontSize: '20px',
+    //     textAlign: 'right',
+    //     float: 'right',
+    //     margin: '5px',
+    //     backgroundColor: 'transparent',
+    //     borderRadius: '8px',
+    //     border: 'solid grey 2px'
+    // },
+    // styleOverlay: {
+    //     position: 'absolute',
+    //     top: '0',
+    //     height: '100vh',
+    //     width: '100vh',
+    //     backgroundColor: 'rgba(0, 0, 0, 30%)',
+    // }
 };

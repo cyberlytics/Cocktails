@@ -10,7 +10,7 @@ class TopContainer extends Component {
     state = {  }
     render() { 
         return (
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                         <Banner/>
