@@ -53,7 +53,7 @@ export default class LoginController{
     static async isLoggedIn(req, res, next) {
         if (req.params.id != null) {
             const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
-            db.find("Users", { username : 'john' })
+            db.find("Users", { _id : ObjectID(req.params.id) })
             .then (data => {
                 if (data && data.length === 1) {
                     res.json({
