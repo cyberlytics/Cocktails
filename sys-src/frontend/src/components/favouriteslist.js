@@ -32,13 +32,13 @@ function FavouritesList() {
           }
         } catch (error) {
             console.log(error.message);
-            this.resetForm();
         }
     }, []);
 
 
 
     return (
+      //TODO: Change this
       cocktails.map((cocktail) => {
         return (
           <div className="col-lg-4 pb-1">
