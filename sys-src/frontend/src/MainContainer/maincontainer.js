@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 //Import own UI-Elements
 import LoginForm from '../LoginForm/loginform';
 import CocktailsList from '../components/List_Of_Cocktails';
+import FavouritesList from '../components/favouriteslist';
 
 //Import local ressources
 import { styles } from './style';
@@ -20,7 +21,11 @@ class MainContainer extends Component {
                     <Switch>
                         {/* TODO: UserLoggedIn über API prüfen, falls Informationen aus dem Backend abgefragt werden. */}
                         <Route path="/Favourites">
-                            <h1>{this.props.userIsLoggedIn ? "FAVORITEN" : "NICHT EINGELOGGT"}</h1>
+                            {this.props.userIsLoggedIn ?
+                            <FavouritesList/>
+                            :
+                            <h1>NICHT EINGELOGGT</h1>
+                            }
                         </Route>
                         <Route path="/LastCocktails">
                             <h1>{this.props.userIsLoggedIn ? "LETZTE COCKTAILS" : "NICHT EINGELOGGT"}</h1>
