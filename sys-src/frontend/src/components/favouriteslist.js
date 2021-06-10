@@ -1,8 +1,12 @@
 //Import modules
 import React, { useState, useEffect } from 'react';
 
+//Import own UI-Elements
+import Cocktail from './cocktail';
+
 //Import local ressources
 import { apiurl } from '../api';
+
 
 function FavouritesList() {
     const [state, setState] = useState(0);
@@ -24,11 +28,18 @@ function FavouritesList() {
 
           //Request successfull
           if (result && result.success) {
-
+            setState({
+              dbDataLoaded : result.success,
+              cocktails : result.cocktails,
+            });
+            console.log(state.cocktails);
           }
           //Request failed
           else if (result && result.success === false) {
-
+            setState({
+              dbDataLoaded : result.success,
+              cocktails : null,
+            })
           }
         } catch (error) {
             console.log(error.message);
@@ -36,15 +47,24 @@ function FavouritesList() {
     }, []);
 
 
-
-    return (
-      //TODO: Change this
-      cocktails.map((cocktail) => {
+    if (state.dbDataLoaded) {
+      return (
+        <div className="row">
+          {
+            state.cocktails.map((cocktail) => {
+              return (
+                <Cocktail name={cocktail.name} ingredients={cocktail.ingredients}/>
+              );
+            })
+          }
+        </div>
+      );
+    }
+    else {
         return (
-          
+          <h1>Loading...</h1>
         );
-      })
-    );
- }
+    }
+}
 
  export default FavouritesList;

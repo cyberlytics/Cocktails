@@ -24,29 +24,15 @@ export default class UserController{
             else {
                 Promise.all(
                     data[0].favourites.map(async (cocktail) => {
-                        console.log(cocktail);
                         return await db.find("Recipes", { _id : ObjectID(cocktail) });
                     })
                 )
                 .then (cocktails => {
                     res.json({
                         success: true,
-                        cocktails: cocktails,
+                        cocktails: cocktails.flat(),
                     })
                 })
-
-                // data[0].favourites.forEach(cocktail => {
-                //     db.find("Recipes", { _id : ObjectID(cocktail) })
-                //     .then (data => {
-                //         cocktails.push(data);
-                //     })
-                //     .catch (error => {
-                //         res.json({
-                //             success: false,
-                //             msg: 'Fehler beim Zugriff auf die Datenbank'
-                //         })
-                //     })
-                // });
             }
         })
         .catch(error => res.json({

@@ -26,22 +26,6 @@ const ListOfCocktails = props => {
           cocktails.map((cocktail) => {
             return (
               <Cocktail name={cocktail.name} ingredients={cocktail.ingredients}/>
-              //  <div className="col-lg-4 pb-1">
-              //   <div className="card">
-              //     <div className="card-body">
-              //       <h5 className="card-title">{cocktail.name}</h5>
-              //         {
-              //           cocktail.ingredients.map( (ingredient, i) => (
-              //             <div key={`ingredient-test-${i}`}>
-              //               <b>{ingredient.name}</b> : {" "}
-              //               {ingredient.quantity.quantity}
-              //               {ingredient.quantity.unit}
-              //             </div>
-              //           ))
-              //         }
-              //     </div>
-              //   </div>
-              // </div>
             );
           })
         }
