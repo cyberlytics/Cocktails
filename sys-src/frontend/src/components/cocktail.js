@@ -15,7 +15,7 @@ function Cocktail(props) {
 
 
     return (
-        <div className="col-lg-4 pb-1">
+        <button key={props.name} className="col-lg-4 pb-1" onClick= {event => window.location.href='/'+props.name}>
             <div className="card">
                 <div className="card-body">
                     
@@ -32,7 +32,7 @@ function Cocktail(props) {
                     
                 </div>
             </div>
-        </div>
+        </button>
     );
 }
 
