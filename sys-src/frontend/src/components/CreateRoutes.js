@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import CocktailsDataService from "../Service/cocktails"
+import { Route } from 'react-router-dom';
+import StepbyStep from './StepbyStep'
 
-
-//Import own UI-Elements
-import Cocktail from './cocktail';
-
-const ListOfCocktails = props => {
+const CreateRoutes = props => {
   const [cocktails, setCocktails] = useState([])
   
   useEffect( () => {
@@ -20,19 +18,15 @@ const ListOfCocktails = props => {
       })
   }
 
-    return (
-      <div className="row">
-        {
+    return (            
           cocktails.map((cocktail) => {
             return (
-              <button key={cocktail.name} className="col-lg-4 pb-1" onClick= {event => window.location.href='/'+cocktail.name}>
-                <Cocktail name={cocktail.name} ingredients={cocktail.ingredients}/>
-              </button>
+                <Route path={ `/${cocktail.name}` }>
+                    <StepbyStep data={cocktail}/>
+                </Route>
             );
           })
-        }
-      </div>
     );
 }
 
-export default ListOfCocktails;
+export default CreateRoutes;
