@@ -25,9 +25,9 @@ const ListOfCocktails = props => {
         {
           cocktails.map((cocktail) => {
             return (
-              <button key={cocktail.name} className="col-lg-4 pb-1" onClick= {event => window.location.href='/'+cocktail.name}>
+
                 <Cocktail name={cocktail.name} ingredients={cocktail.ingredients}/>
-              </button>
+
             );
           })
         }
