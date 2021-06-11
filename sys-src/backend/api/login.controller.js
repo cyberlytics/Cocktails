@@ -17,7 +17,6 @@ export default class LoginController{
                 bcrypt.compare(password, data[0].password, (bcrypErr, verified) => {
                     //Correct Password
                     if (verified) {
-                        req.session.userID = data[0]._id;
                         res.json({
                             success: true,
                             username: data[0].Username,
@@ -77,5 +76,10 @@ export default class LoginController{
                 })
             })          
         }
+    }
+
+    static async logout(req, res) {
+        let userid = req.body.userid;
+        console.log("Logging out user:", userid);
     }
 }

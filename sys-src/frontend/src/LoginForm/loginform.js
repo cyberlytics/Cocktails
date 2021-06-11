@@ -36,14 +36,12 @@ class LoginForm extends Component {
     }
 
     handleEnter(e) {
-        console.log("enter");
         if (e.charCode === 13) {
             this.handleSubmit();
         }
     }
 
     async handleSubmit() {
-        console.log("submit");
         console.log(this.state.username);
         console.log(this.state.password);
         if (!this.state.username) {

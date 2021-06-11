@@ -1,10 +1,12 @@
 //Import modules
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 //Import own UI-Elements
 import LoginForm from '../LoginForm/loginform';
 import CocktailsList from '../components/List_Of_Cocktails';
+import FavouritesList from '../components/favouriteslist';
+import CreateRoutes from '../components/CreateRoutes';
 
 //Import local ressources
 import { styles } from './style';
@@ -15,12 +17,17 @@ class MainContainer extends Component {
     render() { 
         return (
             <div style={styles.styleDiv}>
-                <h1>MainContainer</h1>
                 <BrowserRouter>
                     <Switch>
                         {/* TODO: UserLoggedIn über API prüfen, falls Informationen aus dem Backend abgefragt werden. */}
+
+
                         <Route path="/Favourites">
-                            <h1>{this.props.userIsLoggedIn ? "FAVORITEN" : "NICHT EINGELOGGT"}</h1>
+                            {this.props.userIsLoggedIn ?
+                            <FavouritesList/>
+                            :
+                            <h1>NICHT EINGELOGGT</h1>
+                            }
                         </Route>
                         <Route path="/LastCocktails">
                             <h1>{this.props.userIsLoggedIn ? "LETZTE COCKTAILS" : "NICHT EINGELOGGT"}</h1>
@@ -34,10 +41,15 @@ class MainContainer extends Component {
                         <Route path="/Login">
                             <LoginForm/>
                         </Route>
-
-                        <Route path="/">
-                            <CocktailsList/>
+                        <Route exact path="/">
+                            <Redirect to="/Cocktailoverview" />
                         </Route>
+
+                        <Route path="/Cocktailoverview">
+                            <CocktailsList/>
+                        </Route>                     
+
+                        <CreateRoutes/>
                     </Switch>
                 </BrowserRouter>
             </div>
