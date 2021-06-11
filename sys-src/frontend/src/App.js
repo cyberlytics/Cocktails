@@ -21,10 +21,37 @@ class App extends Component {
         })
     }
 
-    handleLogout(val) {
+    async handleLogout() {
         console.log("Logging out...")
+        let userid = localStorage.getItem('isLoggedInId');
+
         localStorage.setItem('isLoggedInId', '');
         this.setValue('userIsLoggedIn', false);
+
+        try {
+            let res = await fetch(apiurl + '/logout', {
+                method: "post",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userid: userid,
+                })
+            });
+
+            let result = await res.json();
+            if (result.success) {
+                console.log("Logout successful");
+            }
+            else {
+                console.log("Fehler beim Logout");
+            }
+        }
+        catch(e) {
+            console.log(e.message);
+        }
+
         window.location.href='/';
     }
 
