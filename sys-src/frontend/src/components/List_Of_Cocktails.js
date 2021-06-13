@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import CocktailsDataService from "../Service/cocktails"
-
+import searchbarelement from "../TopContainer/NavigationBar/searchbarelement"
 
 //Import own UI-Elements
 import Cocktail from './cocktail';
 
 const ListOfCocktails = props => {
   const [cocktails, setCocktails] = useState([])
-  
+
   useEffect( () => {
     retrieveCocktails();
   }, [])
