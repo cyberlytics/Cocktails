@@ -9,7 +9,6 @@ const StepbyStep = props => {
     const [instructionactive, setinstructionactive] = useState(false)
     const onClick = () => setinstructionactive(true)
 
-
     return(
         <div>
             <h1>Bild</h1>
@@ -28,19 +27,16 @@ const StepbyStep = props => {
             <button onClick={onClick}>Start</button>
             { instructionactive ? 
             <div>
-                        <ul className='list-group mb-4'>
+                <ul className='list-group mb-4'>
+                    <li>
+                        {currentStep}
+                    </li>
+                </ul>
 
-                        <li>
-                            {currentStep}
-                        </li>
-        
-                    </ul>
-        
-                    <Pagination steps={props.data.steps} paginate={paginate}></Pagination>
+            <Pagination steps={props.data.steps} paginate={paginate} currentStep={currentStep}></Pagination>
             </div>
-                     : null }
-
-
+            : null 
+            }
         </div>
     )
 }
