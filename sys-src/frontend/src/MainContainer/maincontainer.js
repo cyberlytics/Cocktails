@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 //Import own UI-Elements
 import LoginForm from '../LoginForm/loginform';
-import CocktailsList from '../components/List_Of_Cocktails';
-import FavouritesList from '../components/favouriteslist';
+import CocktailsList from './Cocktailoverview/List_Of_Cocktails';
+import FavouritesList from './favouriteslist/favouriteslist';
 import CreateRoutes from '../components/CreateRoutes';
 
 //Import local ressources
