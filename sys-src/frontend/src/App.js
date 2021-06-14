@@ -13,7 +13,7 @@ import { apiurl } from './api';
 class App extends Component {
     state = {
         userIsLoggedIn : false,
-        cocktails : 0,
+        cocktails : [],
     }
 
     //Function to pass to childs, which enables them to set a state property
@@ -25,6 +25,7 @@ class App extends Component {
 
     getSearch(val){
         this.setState({cocktails: val});
+        console.log(this.state.cocktails);
     }
 
     async handleLogout() {
@@ -91,7 +92,6 @@ class App extends Component {
       retrieveCocktails() {
         CocktailsDataService.getAll()
           .then(response => {
-            console.log(response.data);
             this.setState({cocktails: response.data})
           })
       }

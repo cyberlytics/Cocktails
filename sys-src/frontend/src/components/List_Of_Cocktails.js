@@ -9,16 +9,9 @@ const ListOfCocktails = props => {
   const [cocktails, setCocktails] = useState([])
 
   useEffect( () => {
-    retrieveCocktails();
-  }, [])
-
-  const retrieveCocktails = () => {
-    CocktailsDataService.getAll()
-      .then(response => {
-        console.log(response.data);
-        setCocktails(response.data)
-      })
-  }
+    setCocktails(props.cocktails);
+    console.log("Cocktails: " + props.cocktails);
+  });
 
     return (
       <div className="row">

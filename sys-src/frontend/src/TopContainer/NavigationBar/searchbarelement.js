@@ -24,7 +24,6 @@ const SearchBar = props => {
     const retrieveCocktails = () => {
       CocktailsDataService.getAll()
         .then(response => {
-          console.log(response.data);
           setCocktails(response.data)
         })
     }
