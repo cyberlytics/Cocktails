@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 //Import local ressources
-import { apiurl } from '../api';
+import { apiurl } from '../../api';
 
 function Cocktail(props) {
     const [state, setState] = useState(0);

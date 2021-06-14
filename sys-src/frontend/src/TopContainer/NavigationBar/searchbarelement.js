@@ -1,6 +1,5 @@
 //Import modules
 import React, { Component, useState, useEffect } from 'react';
-import ListOfCocktails from '../../components/List_Of_Cocktails';
 import CocktailsDataService from "../../Service/cocktails"
 
 const SearchBar = props => {
