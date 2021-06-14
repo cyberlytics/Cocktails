@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import CocktailsDataService from "../Service/cocktails"
 import { Route } from 'react-router-dom';
-import StepbyStep from './StepbyStep'
+import StepbyStep from '../MainContainer/StepbyStep/StepbyStep'
 
 const CreateRoutes = props => {
   const [cocktails, setCocktails] = useState([])
