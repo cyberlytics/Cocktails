@@ -46,7 +46,8 @@ class MainContainer extends Component {
                         </Route>
 
                         <Route path="/Cocktailoverview">
-                            <CocktailsList/>
+                        
+                            <CocktailsList cocktails={this.props.cocktails}/>
                         </Route>                     
 
                         <CreateRoutes/>
