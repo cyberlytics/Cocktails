@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 
 //Import own UI-Elements
-import Cocktail from './cocktail';
+import Cocktail from '../Cocktailoverview/cocktail';
 
 //Import local ressources
-import { apiurl } from '../api';
+import { apiurl } from '../../api';
 
 
 function FavouritesList() {
