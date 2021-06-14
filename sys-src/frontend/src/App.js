@@ -1,5 +1,6 @@
 //Import modules
 import React, { Component } from 'react';
+import CocktailsDataService from "./Service/cocktails"
 
 //Import own UI-Elements
 import TopContainer from './TopContainer/topcontainer';
@@ -12,6 +13,7 @@ import { apiurl } from './api';
 class App extends Component {
     state = {
         userIsLoggedIn : false,
+        cocktails : 0,
     }
 
     //Function to pass to childs, which enables them to set a state property
@@ -19,6 +21,10 @@ class App extends Component {
         this.setState({
             [property] : val
         })
+    }
+
+    getSearch(val){
+        this.setState({cocktails: val});
     }
 
     async handleLogout() {
@@ -56,6 +62,7 @@ class App extends Component {
     }
 
     async componentDidMount() {
+        this.retrieveCocktails();
         try {
             const isLoggedInId = localStorage.getItem('isLoggedInId');
             let res = await fetch(apiurl + '/login/' + isLoggedInId, {
@@ -81,11 +88,20 @@ class App extends Component {
         }
     }
     
+      retrieveCocktails() {
+        CocktailsDataService.getAll()
+          .then(response => {
+            console.log(response.data);
+            this.setState({cocktails: response.data})
+          })
+      }
+
+
     render() {
         return (
             <div>
-                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} onLogout={(val) => this.handleLogout(val)}/>
-                <MainContainer userIsLoggedIn={this.state.userIsLoggedIn}/>
+                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
+                <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)}/>
                 <BottomContainer/>
             </div>
         );

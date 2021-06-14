@@ -37,7 +37,7 @@ class TopContainer extends Component {
                                     <LoginElement class="nav-link" href="#" value={"Login"} redirect={event => window.location.href='/login'} userIsLoggedIn={this.props.userIsLoggedIn} onLogout={this.props.onLogout}/>
                             </li>
                             <li class="nav-item">
-                                    <SearchBar class="nav-link" href="#" value={"Search"}/>
+                                    <SearchBar class="nav-link" href="#" value={"Search"} onSearchFiltered={this.props.onSearchFiltered}/>
                             </li>
                         </ul>
                     </div>              

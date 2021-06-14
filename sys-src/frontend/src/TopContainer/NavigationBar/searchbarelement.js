@@ -14,6 +14,7 @@ const SearchBar = props => {
         const filteredCocktails = cocktails.filter(cocktail => {
             return cocktail.name.toLowerCase().includes( searchCocktail.toLowerCase())
         })
+        props.onSearchFiltered(filteredCocktails)
     };
 
     useEffect( () => {
