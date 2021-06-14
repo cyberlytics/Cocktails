@@ -44,11 +44,9 @@ class MainContainer extends Component {
                         <Route exact path="/">
                             <Redirect to="/Cocktailoverview" />
                         </Route>
-
                         <Route path="/Cocktailoverview">
-                            <CocktailsList/>
+                            <CocktailsList cocktails={this.props.cocktails}/>
                         </Route>                     
-
                         <CreateRoutes/>
                     </Switch>
                 </BrowserRouter>

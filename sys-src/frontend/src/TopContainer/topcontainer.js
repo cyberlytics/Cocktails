@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import Banner from './Banner/banner';
 import NavBarElement from './NavigationBar/navbarelement';
 import LoginElement from './NavigationBar/loginelement';
+import SearchBar from './NavigationBar/searchbarelement';
 
 class TopContainer extends Component {
     state = {  }
@@ -34,6 +35,9 @@ class TopContainer extends Component {
                             </li>
                             <li class="nav-item">
                                     <LoginElement class="nav-link" href="#" value={"Login"} redirect={event => window.location.href='/login'} userIsLoggedIn={this.props.userIsLoggedIn} onLogout={this.props.onLogout}/>
+                            </li>
+                            <li class="nav-item">
+                                    <SearchBar class="nav-link" href="#" value={"Search"} onSearchFiltered={this.props.onSearchFiltered}/>
                             </li>
                         </ul>
                     </div>              
