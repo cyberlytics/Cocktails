@@ -8,7 +8,6 @@ const ListOfCocktails = props => {
 
   useEffect( () => {
     setCocktails(props.cocktails);
-    console.log("Cocktails: " + props.cocktails);
   });
 
     return (
