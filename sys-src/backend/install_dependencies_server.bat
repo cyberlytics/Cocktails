@@ -1,0 +1,1 @@
+npm install dotenv express-session nodemon
