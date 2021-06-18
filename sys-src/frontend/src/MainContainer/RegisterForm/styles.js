@@ -1,7 +1,7 @@
 export const styles = {
     styleDiv : {
         position: "relative",
-        height: "310px",
+        height: "330px",
         width: "400px",
         top: "50px",
         left: "50%",

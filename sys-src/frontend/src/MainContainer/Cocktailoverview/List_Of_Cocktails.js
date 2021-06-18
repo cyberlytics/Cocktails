@@ -16,7 +16,7 @@ const ListOfCocktails = props => {
           cocktails.map((cocktail) => {
             return (
 
-                <Cocktail name={cocktail.name} ingredients={cocktail.ingredients}/>
+                <Cocktail name={cocktail.name} ingredients={cocktail.ingredients} isFavourite={cocktail.favourite} toggleFavourite={props.toggleFavourite} favouriteDisabled={!props.userIsLoggedIn}/>
 
             );
           })
