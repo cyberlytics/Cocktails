@@ -10,33 +10,38 @@ const StepbyStep = props => {
     const onClick = () => setinstructionactive(true)
 
     return(
-        <div>
-            <h1>Bild</h1>
-            <h2>{props.data.name}</h2>
-            <h3>
-                {                        
-                    props.data.ingredients.map( (ingredient, i) => (
-                    <div key={`ingredient-test-${i}`}>
-                        <b>{ingredient.name}</b> : {" "}
-                        {ingredient.quantity.quantity}
-                        {ingredient.quantity.unit}
-                    </div>
-                ))
-                }
-            </h3>
-            <button onClick={onClick}>Start</button>
-            { instructionactive ? 
-            <div>
-                <ul className='list-group mb-4'>
-                    <li>
-                        {currentStep}
-                    </li>
-                </ul>
-
-            <Pagination steps={props.data.steps} paginate={paginate} currentStep={currentStep}></Pagination>
+        <div className="row">
+            <div className="col">
+                <h2 className="fw-bold">{props.data.name}</h2>
+                <img src={`data:image/png;base64,${props.data.image}`}></img>
+                
+                <h3>
+                    {                        
+                        props.data.ingredients.map( (ingredient, i) => (
+                        <div key={`ingredient-test-${i}`}>
+                            <b>{ingredient.name}</b> : {" "}
+                            {ingredient.quantity.quantity}
+                            {ingredient.quantity.unit}
+                        </div>
+                    ))
+                    }
+                </h3>
             </div>
-            : null 
-            }
+            <div className="col">
+                <button  onClick={onClick}>How-To-Mix</button>
+                { instructionactive ? 
+                <div>
+                    <ul className='list-group mb-4'>
+                        <div>
+                            {currentStep}
+                        </div>
+                    </ul>
+
+                <Pagination steps={props.data.steps} paginate={paginate} currentStep={currentStep}></Pagination>
+                </div>
+                : null 
+                }
+            </div>
         </div>
     )
 }

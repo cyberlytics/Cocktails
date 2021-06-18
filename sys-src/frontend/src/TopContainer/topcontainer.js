@@ -22,6 +22,9 @@ class TopContainer extends Component {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-end">
                             <li class="nav-item">
+                                    <SearchBar class="nav-link" href="#" value={"Search"} onSearchFiltered={this.props.onSearchFiltered}/>
+                            </li>
+                            <li class="nav-item">
                                     <NavBarElement class="nav-link" href="#" value={"Favoriten"} redirect={event => window.location.href='/Favourites'} userIsLoggedIn={this.props.userIsLoggedIn}/>
                             </li>
                             <li class="nav-item">
@@ -35,9 +38,6 @@ class TopContainer extends Component {
                             </li>
                             <li class="nav-item">
                                     <LoginElement class="nav-link" href="#" value={"Login"} redirect={event => window.location.href='/login'} userIsLoggedIn={this.props.userIsLoggedIn} onLogout={this.props.onLogout}/>
-                            </li>
-                            <li class="nav-item">
-                                    <SearchBar class="nav-link" href="#" value={"Search"} onSearchFiltered={this.props.onSearchFiltered}/>
                             </li>
                         </ul>
                     </div>              

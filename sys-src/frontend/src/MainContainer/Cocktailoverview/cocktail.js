@@ -27,9 +27,9 @@ function Cocktail(props) {
 
 
     return (
-        <button key={props.name} className="col-lg-4 pb-1" onClick= {event => outerContainerHandler(event)} id={"OuterContainer"}>
-            <div className="card">
-                <div className="card-body">
+        <li key={props.name} className="col-lg-4 pb-1 btn with-image" onClick= {event => outerContainerHandler(event)} id={"OuterContainer"}>
+            <div className="card" >
+                <div className="card-body" >
                     
                 <h5 className="card-title">{props.name}</h5>
                     {
@@ -44,7 +44,7 @@ function Cocktail(props) {
                 <div className="float-end m-0 btn btn-link"  onClick={event => innerContainerHandler(event)} id={"InnerContainer"}><i className={props.isFavourite ? "fa fa-star" : "far fa-star"}/></div>
                 </div>
             </div>
-        </button>
+        </li>
     );
 }
 
