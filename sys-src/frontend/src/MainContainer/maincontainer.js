@@ -7,6 +7,7 @@ import LoginForm from '../LoginForm/loginform';
 import CocktailsList from './Cocktailoverview/List_Of_Cocktails';
 import FavouritesList from './favouriteslist/favouriteslist';
 import CreateRoutes from '../components/CreateRoutes';
+import RegisterForm from './RegisterForm/registerform';
 
 //Import local ressources
 import { styles } from './style';
@@ -19,12 +20,9 @@ class MainContainer extends Component {
             <div style={styles.styleDiv}>
                 <BrowserRouter>
                     <Switch>
-                        {/* TODO: UserLoggedIn über API prüfen, falls Informationen aus dem Backend abgefragt werden. */}
-
-
                         <Route path="/Favourites">
                             {this.props.userIsLoggedIn ?
-                            <FavouritesList/>
+                            <FavouritesList cocktails={this.props.cocktails} toggleFavourite={this.props.toggleFavourite} userIsLoggedIn={this.props.userIsLoggedIn}/>
                             :
                             <h1>NICHT EINGELOGGT</h1>
                             }
@@ -45,8 +43,11 @@ class MainContainer extends Component {
                             <Redirect to="/Cocktailoverview" />
                         </Route>
                         <Route path="/Cocktailoverview">
-                            <CocktailsList cocktails={this.props.cocktails}/>
-                        </Route>                     
+                            <CocktailsList cocktails={this.props.cocktails} toggleFavourite={this.props.toggleFavourite} userIsLoggedIn={this.props.userIsLoggedIn}/>
+                        </Route>
+                        <Route path="/register">
+                            <RegisterForm/>
+                        </Route>                    
                         <CreateRoutes/>
                     </Switch>
                 </BrowserRouter>

@@ -12,10 +12,22 @@ function Cocktail(props) {
 
     }, []);
 
+    function outerContainerHandler(e) {
+        window.location.href='/'+props.name
+    }
+
+    function innerContainerHandler(e) {
+        if(props.favouriteDisabled) {
+            return;
+        }
+        e.stopPropagation(); //Stop Parent Element from triggering OnClick event
+        props.toggleFavourite(props.name);
+    }
+
 
 
     return (
-        <button key={props.name} className="col-lg-4 pb-1" onClick= {event => window.location.href='/'+props.name}>
+        <button key={props.name} className="col-lg-4 pb-1" onClick= {event => outerContainerHandler(event)} id={"OuterContainer"}>
             <div className="card">
                 <div className="card-body">
                     
@@ -29,7 +41,7 @@ function Cocktail(props) {
                             </div>
                         ))
                     }
-                    
+                <div className="float-end m-0 btn btn-link"  onClick={event => innerContainerHandler(event)} id={"InnerContainer"}><i className={props.isFavourite ? "fa fa-star" : "far fa-star"}/></div>
                 </div>
             </div>
         </button>
