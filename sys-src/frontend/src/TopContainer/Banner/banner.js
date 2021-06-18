@@ -9,7 +9,7 @@ class Banner extends Component {
     render() { 
         return (
             <div class="badge bg-primary text-wrap">
-                <h1>Banner</h1>
+                <h1>Easy Cocktail Mixing</h1>
             </div>
         );
     }
