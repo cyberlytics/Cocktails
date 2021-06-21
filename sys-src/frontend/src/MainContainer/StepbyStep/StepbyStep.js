@@ -26,6 +26,11 @@ const StepbyStep = props => {
                     ))
                     }
                 </h3>
+                <h3>
+                    <b>Kalorien</b>: {" "}
+                    {props.data.calories.amount}
+                    {props.data.calories.unit}
+                </h3>
             </div>
             <div className="col">
                 <button  onClick={onClick}>How-To-Mix</button>
