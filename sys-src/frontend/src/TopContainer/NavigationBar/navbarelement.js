@@ -9,7 +9,7 @@ class NavBarElement extends Component {
     render() { 
         return (
             <div>
-                <button class="btn btn-outline-primary" onClick={this.props.redirect} disabled={!this.props.userIsLoggedIn}>{this.props.value}</button>
+                <button className="btn btn-outline-primary" onClick={this.props.redirect} disabled={!this.props.userIsLoggedIn}>{this.props.value}</button>
             </div>
         );
     }

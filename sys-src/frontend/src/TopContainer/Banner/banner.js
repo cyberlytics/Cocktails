@@ -8,7 +8,7 @@ class Banner extends Component {
     state = {  }
     render() { 
         return (
-            <div class="badge bg-primary text-wrap">
+            <div className="badge bg-primary text-wrap">
                 <h1>Easy Cocktail Mixing</h1>
             </div>
         );
