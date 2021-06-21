@@ -13,7 +13,7 @@ const StepbyStep = props => {
         <div className="row">
             <div className="col">
                 <h2 className="fw-bold">{props.data.name}</h2>
-                <img src={`data:image/png;base64,${props.data.image}`}></img>
+                <img src={`data:image/png;base64,${props.data.image}`} width="500px" height="500px"></img>
                 
                 <h3>
                     {                        
