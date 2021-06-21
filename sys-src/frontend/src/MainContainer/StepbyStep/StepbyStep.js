@@ -12,7 +12,7 @@ const StepbyStep = props => {
     return(
         <div className="row">
             <div className="col">
-                <h2 className="fw-bold">{props.data.name}</h2>
+                <h2 className="fw-bold mt-4">{props.data.name}</h2>
                 <img src={`data:image/png;base64,${props.data.image}`} width="500px" height="500px"></img>
                 
                 <h3>
@@ -33,7 +33,7 @@ const StepbyStep = props => {
                 </h3>
             </div>
             <div className="col">
-                <button  onClick={onClick}>How-To-Mix</button>
+                <button class="btn btn-outline-primary mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
                 { instructionactive ? 
                 <div>
                     <ul className='list-group mb-4'>
