@@ -1,5 +1,6 @@
 //Import modules
 import React, { useState, useEffect } from 'react';
+import "./style.css";
 
 //Import local ressources
 import { apiurl } from '../../api';
@@ -27,25 +28,27 @@ function Cocktail(props) {
 
 
     return (
-        <button key={props.name} className="col-lg-4 pb-1" onClick= {event => outerContainerHandler(event)} id={"OuterContainer"}>
-            <div className="card">
-                <div className="card-body">
-                    
-                <h5 className="card-title">{props.name}</h5>
+
+        <li key={props.name} className="col-lg-4 pb-1 btn" onClick= {event => outerContainerHandler(event)} id={"OuterContainer"}>
+            <div className="card border-dark mb-3 cocktailcontainer bg-warning">
+            <h5 className="card-title fw-bold ">{props.name}</h5>
+            <div className="float-end m-0 btn btn-link"  onClick={event => innerContainerHandler(event)} id={"InnerContainer"}><i className={props.isFavourite ? "fa fa-star" : "far fa-star"}/></div>
+            
+            <img src={`data:image/png;base64,${props.image}`} className="card-img-bottom"/>     
+                <div class="overlay">
                     {
                         props.ingredients.map( (ingredient, i) => (
                             <div key={`ingredient-test-${i}`}>
-                            <b>{ingredient.name}</b> : {" "}
-                            {ingredient.quantity.quantity}
-                            {ingredient.quantity.unit}
+                            {ingredient.name}
                             </div>
                         ))
-                    }
-                <div className="float-end m-0 btn btn-link"  onClick={event => innerContainerHandler(event)} id={"InnerContainer"}><i className={props.isFavourite ? "fa fa-star" : "far fa-star"}/></div>
+                    }                   
                 </div>
+                    
             </div>
-        </button>
+        </li>
+
     );
 }
 
-export default Cocktail;
+export default Cocktail; 
