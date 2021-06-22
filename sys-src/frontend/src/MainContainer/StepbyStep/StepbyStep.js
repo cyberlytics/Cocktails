@@ -19,21 +19,19 @@ const StepbyStep = props => {
                     {                        
                         props.data.ingredients.map( (ingredient, i) => (
                         <div key={`ingredient-test-${i}`}>
-                            <b>{ingredient.name}</b> : {" "}
                             {ingredient.quantity.quantity}
-                            {ingredient.quantity.unit}
+                            {ingredient.quantity.unit} : {" "}
+                            <b>{ingredient.name}</b> 
                         </div>
                     ))
                     }
-                </h3>
-                <h3>
-                    <b>Kalorien</b>: {" "}
                     {props.data.calories.amount}
-                    {props.data.calories.unit}
+                    {props.data.calories.unit} : {" "}
+                    <b>Kalorien</b>
                 </h3>
             </div>
             <div className="col">
-                <button class="btn btn-outline-primary mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
+                <button class="btn btn-primary mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
                 { instructionactive ? 
                 <div>
                     <ul className='list-group mb-4'>
