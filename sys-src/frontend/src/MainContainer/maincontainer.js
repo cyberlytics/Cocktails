@@ -17,7 +17,8 @@ class MainContainer extends Component {
     state = {  }
     render() { 
         return (
-            <div style={styles.styleDiv}>
+            <div className="container">
+                <div class="row justify-content-md-center">
                 <BrowserRouter>
                     <Switch>
                         <Route path="/Favourites">
@@ -51,6 +52,7 @@ class MainContainer extends Component {
                         <CreateRoutes/>
                     </Switch>
                 </BrowserRouter>
+                </div>
             </div>
         );
     }

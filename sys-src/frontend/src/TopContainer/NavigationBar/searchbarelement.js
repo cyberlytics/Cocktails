@@ -29,8 +29,8 @@ const SearchBar = props => {
 
             return (
             <div>
-                <form class="d-flex" >
-                    <input class="form-control me-2" onChange={onChangeSearchCocktail} type="search" placeholder="Suche" aria-label="Search"></input>
+                <form className="d-flex" >
+                    <input className="form-control me-2" onChange={onChangeSearchCocktail} type="search" placeholder="Suche" aria-label="Search"></input>
                 </form>
             </div>
         );
