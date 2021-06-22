@@ -189,7 +189,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
+                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
                 <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)} toggleFavourite={(val) =>this.toggleFavourite(val)}/>
                 <BottomContainer/>
             </div>
