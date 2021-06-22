@@ -13,10 +13,10 @@ const ListOfCocktails = props => {
     return (
       <div className="row">
         {
-          cocktails.map((cocktail) => {
+          cocktails.map((cocktail,i) => {
             return (
 
-                <Cocktail name={cocktail.name} ingredients={cocktail.ingredients} isFavourite={cocktail.favourite} toggleFavourite={props.toggleFavourite} favouriteDisabled={!props.userIsLoggedIn}/>
+                <Cocktail key={`Cocktail-${i}`} image={cocktail.image} name={cocktail.name} ingredients={cocktail.ingredients} isFavourite={cocktail.favourite} toggleFavourite={props.toggleFavourite} favouriteDisabled={!props.userIsLoggedIn}/>
 
             );
           })
