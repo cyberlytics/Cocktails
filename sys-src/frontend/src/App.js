@@ -12,24 +12,29 @@ import { apiurl } from './api';
 import cocktails from './Service/cocktails';
 
 class App extends Component {
+
     state = {
         userIsLoggedIn : false,
         cocktails : [],
+        tempcocktails : [],
     }
+    static tempcocktails
 
     retrieveCocktails() {
         CocktailsDataService.getAll()
           .then(response => {
             this.setState({cocktails: response.data})
+            this.setState({tempcocktails: response.data})
           })
     }
 
     getSearch(val){
+        this.setState({cocktails: this.state.tempcocktails})
         //Get array of favourited cocktail names
         var favouritedCocktails = this.state.cocktails.filter(cocktail => cocktail.favourite).map(cocktail => cocktail.name);
         //Add the favourite tag accordingly to all search result
-        var newCocktails = val.map(cocktail => ({...cocktail, favourite: favouritedCocktails.includes(cocktail.name)}));
-        this.setState({cocktails: newCocktails});
+        var filteredCocktails = val.map(cocktail => ({...cocktail, favourite: favouritedCocktails.includes(cocktail.name)}));
+        this.setState({cocktails: filteredCocktails});
     }
 
     getFavourites() {
