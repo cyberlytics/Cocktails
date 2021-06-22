@@ -17,7 +17,7 @@ const SearchBar = props => {
     };
 
     useEffect( () => {
-      retrieveCocktails();
+      setCocktails(props.cocktails);
     }, [])
   
     const retrieveCocktails = () => {
