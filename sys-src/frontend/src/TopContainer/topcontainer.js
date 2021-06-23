@@ -22,7 +22,7 @@ class TopContainer extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 text-end">
                             <li className="nav-item">
-                                    <SearchBar className="nav-link" href="#" value={"Search"} cocktails={this.props.cocktails} onSearchFiltered={this.props.onSearchFiltered}/>
+                                    <SearchBar className="nav-link" href="#" value={"Search"} tempcocktails={this.props.tempcocktails} onSearchFiltered={this.props.onSearchFiltered}/>
                             </li>
                             <li className="nav-item">
                                     <NavBarElement className="nav-link" href="#" value={"Favoriten"} redirect={event => window.location.href='/Favourites'} userIsLoggedIn={this.props.userIsLoggedIn}/>
