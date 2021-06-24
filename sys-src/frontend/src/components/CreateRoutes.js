@@ -19,9 +19,9 @@ const CreateRoutes = props => {
   }
 
     return (            
-          cocktails.map((cocktail) => {
+          cocktails.map((cocktail, index) => {
             return (
-                <Route path={ `/${cocktail.name}` }>
+                <Route key={index} path={ `/${cocktail.name}` }>
                     <StepbyStep data={cocktail}/>
                 </Route>
             );
