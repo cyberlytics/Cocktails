@@ -9,7 +9,7 @@ class Banner extends Component {
     render() { 
         return (
             <div className=" fw-bold text-secondary" >
-                <h1 class="fas fa-cocktail"> Easy Cocktail Mixing</h1>
+                <h1 className="fas fa-cocktail"> Easy Cocktail Mixing</h1>
             </div>
         );
     }
