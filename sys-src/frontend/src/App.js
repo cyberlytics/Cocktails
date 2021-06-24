@@ -12,24 +12,29 @@ import { apiurl } from './api';
 import cocktails from './Service/cocktails';
 
 class App extends Component {
+
     state = {
         userIsLoggedIn : false,
         cocktails : [],
+        tempcocktails : [],
     }
+    static tempcocktails
 
     retrieveCocktails() {
         CocktailsDataService.getAll()
           .then(response => {
             this.setState({cocktails: response.data})
+            this.setState({tempcocktails: response.data})
           })
     }
 
     getSearch(val){
+        this.setState({cocktails: this.state.tempcocktails})
         //Get array of favourited cocktail names
         var favouritedCocktails = this.state.cocktails.filter(cocktail => cocktail.favourite).map(cocktail => cocktail.name);
         //Add the favourite tag accordingly to all search result
-        var newCocktails = val.map(cocktail => ({...cocktail, favourite: favouritedCocktails.includes(cocktail.name)}));
-        this.setState({cocktails: newCocktails});
+        var filteredCocktails = val.map(cocktail => ({...cocktail, favourite: favouritedCocktails.includes(cocktail.name)}));
+        this.setState({cocktails: filteredCocktails});
     }
 
     getFavourites() {
@@ -189,7 +194,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
+                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} tempcocktails={(this.state.tempcocktails)} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
                 <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)} toggleFavourite={(val) =>this.toggleFavourite(val)}/>
                 <BottomContainer/>
             </div>
