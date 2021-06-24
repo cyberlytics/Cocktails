@@ -1,5 +1,5 @@
 //Import modules
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 const SearchBar = props => {
@@ -16,7 +16,7 @@ const SearchBar = props => {
 
     useEffect(() => {
       setCocktails(props.tempcocktails)
-    })
+    },[props.tempcocktails])
 
             return (
             <div>

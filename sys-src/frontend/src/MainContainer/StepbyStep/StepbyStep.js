@@ -13,7 +13,7 @@ const StepbyStep = props => {
         <div className="row">
             <div className="col">
                 <h2 className="fw-bold mt-4">{props.data.name}</h2>
-                <img src={`data:image/png;base64,${props.data.image}`} width="500px" height="500px"></img>
+                <img src={`data:image/png;base64,${props.data.image}`} width="500px" height="500px" alt={props.data.name}></img>
                 
                 <h3>
                     {                        
@@ -31,7 +31,7 @@ const StepbyStep = props => {
                 </h3>
             </div>
             <div className="col">
-                <button class="btn btn-primary mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
+                <button className="btn btn-primary mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
                 { instructionactive ? 
                 <div>
                     <ul className='list-group mb-4'>
