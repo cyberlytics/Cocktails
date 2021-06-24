@@ -9,7 +9,6 @@ import BottomContainer from './BottomContainer/bottomcontainer';
 
 //Import local ressources
 import { apiurl } from './api';
-import cocktails from './Service/cocktails';
 
 class App extends Component {
 
