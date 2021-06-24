@@ -102,7 +102,7 @@ class LoginForm extends Component {
                 value={this.state.username ? this.state.username : ''} onChange={ (val) => this.setInputValue('username', val)} /></div>
                 <div style={styles.styleInputField}><IconTextField type="password" placeholder="Password" iconclass="fas fa-lock"
                 value={this.state.password ? this.state.password : ''} onChange={ (val) => this.setInputValue('password', val)} /></div>
-                <div style={styles.styleInputField}><button style={styles.styleButton} variant="contained" type="submit" class="btn btn-primary"
+                <div style={styles.styleInputField}><button style={styles.styleButton} variant="contained" type="submit" className="btn btn-primary"
                 onClick={() => this.handleSubmit() } disabled={this.state.buttonDisabled}>Login</button></div>
                 <div style={styles.styleLinkText}><span>Not registered yet? Click <a href="/register">Here</a></span></div>
             </div>
