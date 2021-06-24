@@ -9,7 +9,7 @@ const Pagination = props => {
                 {
 
                     props.steps.map( (number,i) => (
-                        <li key={number} className={number==props.currentStep? "page-item active":"page-item"}>
+                        <li key={number} className={number===props.currentStep? "page-item active":"page-item"}>
                             <a onClick={()=> props.paginate(number)} className="page-link btn">
                                 {i+1}
                             </a>
