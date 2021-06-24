@@ -35,7 +35,7 @@ function Cocktail(props) {
             <div className="float-end m-0 btn btn-link"  onClick={event => innerContainerHandler(event)} id={"InnerContainer"}><i className={props.isFavourite ? "fa fa-star" : "far fa-star"}/></div>
             
             <img src={`data:image/png;base64,${props.image}`} className="card-img-bottom"/>     
-                <div class="overlay">
+                <div className="overlay">
                     {
                         props.ingredients.map( (ingredient, i) => (
                             <div key={`ingredient-test-${i}`}>
