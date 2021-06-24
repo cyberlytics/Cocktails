@@ -10,7 +10,7 @@ function FavouritesList(props) {
     return (
       <div className="row">
         {
-          props.cocktails.foreach((cocktail) => {
+          props.cocktails.forEach((cocktail) => {
             if (cocktail.favourite) {
               return (
                 <Cocktail name={cocktail.name} ingredients={cocktail.ingredients} isFavourite={true} toggleFavourite={props.toggleFavourite} favouriteDisabled={!props.userIsLoggedIn}/>
