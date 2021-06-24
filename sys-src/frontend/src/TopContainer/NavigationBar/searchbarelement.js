@@ -1,14 +1,12 @@
 //Import modules
 import React, { Component, useState, useEffect } from 'react';
-import CocktailsDataService from "../../Service/cocktails"
+
 
 const SearchBar = props => {
-    const [searchCocktail, setSearchCocktail] = useState('');
-    const [cocktails, setCocktails] = useState([])
+  const [cocktails, setCocktails] = useState([])
 
     const onChangeSearchCocktail = e => {
         const searchCocktail = e.target.value; 
-        setSearchCocktail(searchCocktail)
 
         const filteredCocktails = cocktails.filter(cocktail => {
             return cocktail.name.toLowerCase().includes( searchCocktail.toLowerCase())
@@ -16,16 +14,9 @@ const SearchBar = props => {
         props.onSearchFiltered(filteredCocktails)
     };
 
-    useEffect( () => {
-      retrieveCocktails();
-    }, [])
-  
-    const retrieveCocktails = () => {
-      CocktailsDataService.getAll()
-        .then(response => {
-          setCocktails(response.data)
-        })
-    }
+    useEffect(() => {
+      setCocktails(props.tempcocktails)
+    })
 
             return (
             <div>
