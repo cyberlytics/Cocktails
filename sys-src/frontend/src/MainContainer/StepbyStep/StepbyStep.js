@@ -31,7 +31,7 @@ const StepbyStep = props => {
                 </h3>
             </div>
             <div className="col">
-                <button class="btn btn-primary mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
+                <button className="btn btn-primary mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
                 { instructionactive ? 
                 <div>
                     <ul className='list-group mb-4'>
