@@ -18,7 +18,7 @@ class MainContainer extends Component {
     render() { 
         return (
             <div className="container">
-                <div class="row justify-content-md-center">
+                <div className="row justify-content-md-center">
                 <BrowserRouter>
                     <Switch>
                         <Route path="/Favourites">
