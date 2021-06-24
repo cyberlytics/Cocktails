@@ -8,7 +8,7 @@ const ListOfCocktails = props => {
 
   useEffect( () => {
     setCocktails(props.cocktails);
-  });
+  },[props.cocktails]);
 
     return (
       <div className="row">
