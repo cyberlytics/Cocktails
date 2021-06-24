@@ -9,10 +9,6 @@ import FavouritesList from './favouriteslist/favouriteslist';
 import CreateRoutes from '../components/CreateRoutes';
 import RegisterForm from './RegisterForm/registerform';
 
-//Import local ressources
-import { styles } from './style';
-
-
 class MainContainer extends Component {
     state = {  }
     render() { 
