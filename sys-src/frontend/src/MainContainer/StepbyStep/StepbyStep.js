@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Pagination from './Pagination'
+import "./style.css"
 
 const StepbyStep = props => {
     const[currentStep, setCurrentStep] = useState(props.data.steps[0]);
@@ -10,33 +11,41 @@ const StepbyStep = props => {
     const onClick = () => setinstructionactive(true)
 
     return(
-        <div>
-            <h1>Bild</h1>
-            <h2>{props.data.name}</h2>
-            <h3>
-                {                        
-                    props.data.ingredients.map( (ingredient, i) => (
-                    <div key={`ingredient-test-${i}`}>
-                        <b>{ingredient.name}</b> : {" "}
-                        {ingredient.quantity.quantity}
-                        {ingredient.quantity.unit}
-                    </div>
-                ))
-                }
-            </h3>
-            <button onClick={onClick}>Start</button>
-            { instructionactive ? 
-            <div>
-                <ul className='list-group mb-4'>
-                    <li>
-                        {currentStep}
-                    </li>
-                </ul>
-
-            <Pagination steps={props.data.steps} paginate={paginate} currentStep={currentStep}></Pagination>
+        <div className="row">
+            <div className="col">
+                <h2 className="fw-bold mt-2 text-white ">{props.data.name}</h2>
+                <img src={`data:image/png;base64,${props.data.image}`} className="mt-2" width="500px" height="500px" alt={props.data.name}></img>
+                
+                <h3 className="text-white my-2">
+                    {                        
+                        props.data.ingredients.map( (ingredient, i) => (
+                        <div key={`ingredient-test-${i}`}>
+                            {ingredient.quantity.quantity}
+                            {ingredient.quantity.unit} : {" "}
+                            <b>{ingredient.name}</b> 
+                        </div>
+                    ))
+                    }
+                    {props.data.calories.amount}
+                    {props.data.calories.unit} : {" "}
+                    <b>Kalorien</b>
+                </h3>
             </div>
-            : null 
-            }
+            <div className="col">
+                <button className="btn goldenbtn mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
+                { instructionactive ? 
+                <div>
+                    <ul className='list-group mb-4'>
+                        <div className="text-white">
+                            {currentStep}
+                        </div>
+                    </ul>
+
+                <Pagination steps={props.data.steps} paginate={paginate} currentStep={currentStep}></Pagination>
+                </div>
+                : null 
+                }
+            </div>
         </div>
     )
 }

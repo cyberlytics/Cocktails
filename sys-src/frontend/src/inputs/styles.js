@@ -7,7 +7,7 @@ export const styles = {
         border: 'black 2px',
     },
     styleInput: {
-        backgroundColor: 'rgba(115, 194, 251, 80%)',
+        backgroundColor: 'rgb(207, 181, 59)',
         float: 'left',
         width: '90%',
         height: '50px',
@@ -15,7 +15,7 @@ export const styles = {
         fontSize: '20px',
     },    
     styleIconDiv: {
-        backgroundColor: 'rgba(115, 194, 251, 80%)',
+        backgroundColor: 'rgb(207, 181, 59)',
         width: '10%',
         height: '50px',
         float: 'left',

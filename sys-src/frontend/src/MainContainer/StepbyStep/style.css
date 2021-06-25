@@ -1,0 +1,7 @@
+.goldenbtn{
+    background-color: rgb(207, 181, 59);
+}
+
+.activated {
+    color: white !important;
+}
