@@ -1,4 +1,5 @@
 import React from 'react'
+import "./style.css"
 
 const Pagination = props => {
 
@@ -9,8 +10,8 @@ const Pagination = props => {
                 {
 
                     props.steps.map( (number,i) => (
-                        <li key={number} className={number===props.currentStep? "page-item active":"page-item"}>
-                            <button onClick={()=> props.paginate(number)} className="page-link btn">
+                        <li key={number} className={number===props.currentStep? "activated":""}>
+                            <button onClick={()=> props.paginate(number)} className="page-link btn goldenbtn text-dark">
                                 {i+1}
                             </button>
                         </li>

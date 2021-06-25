@@ -1,5 +1,6 @@
 //Import modules
 import React, { Component } from 'react';
+import "./style.css"
 
 //Import own UI-Elements
 
@@ -9,7 +10,7 @@ class NavBarElement extends Component {
     render() { 
         return (
             <div>
-                <button className="btn btn-outline-primary" onClick={this.props.redirect} disabled={!this.props.userIsLoggedIn}>{this.props.value}</button>
+                <button className="btn navbutton" onClick={this.props.redirect} disabled={!this.props.userIsLoggedIn}>{this.props.value}</button>
             </div>
         );
     }
