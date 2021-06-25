@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 //Import own UI-Elements
 
 //Import local ressources
-import { styles } from './style';
+import './style.css';
 
 class LoginElement extends Component {
     state = {  }
@@ -12,15 +12,15 @@ class LoginElement extends Component {
     render() {
         if (!this.props.userIsLoggedIn) {
             return (
-                <div style={styles.styleDiv}>
-                    <button className="btn btn-outline-primary" onClick={this.props.redirect}>Login</button>
+                <div className="styleDiv">
+                    <button className="btn navbutton" onClick={this.props.redirect}>Login</button>
                 </div>
             );
         }
         else {
             return (
-                <div style={styles.styleDiv}>
-                    <button className="btn btn-outline-primary" onClick={this.props.onLogout}>Logout</button>
+                <div className="styleDiv">
+                    <button className="btn navbutton" onClick={this.props.onLogout}>Logout</button>
                 </div>
             );   
         }
