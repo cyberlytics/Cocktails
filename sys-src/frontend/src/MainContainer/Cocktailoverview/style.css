@@ -24,3 +24,22 @@
 .cocktailcontainer:hover .overlay {
   opacity: 1;
 }
+
+.heading{
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  font-style: italic;
+  text-align: center;
+}
+
+.welcoming{
+  color:white;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.card{
+  background-color: rgb(207, 181, 59);
+}

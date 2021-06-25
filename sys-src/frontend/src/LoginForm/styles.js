@@ -1,11 +1,10 @@
 export const styles = {
     styleDiv : {
-        position: "relative",
+        position: "center",
         height: "310px",
         width: "400px",
         top: "50px",
         left: "50%",
-        transform: 'translate(-50%)',
 
         backgroundColor: 'rgba(0, 0, 0, 60%)',
         boxSizing: 'border-box',
@@ -15,7 +14,7 @@ export const styles = {
         overflow: 'auto',
     },    
     styleButton : {
-        backgroundColor: 'rgba(115, 194, 251, 80%)',
+        backgroundColor: 'rgb(207, 181, 59)',
         marginTop: '5px',
         width: '99%',
         height: '50px',
