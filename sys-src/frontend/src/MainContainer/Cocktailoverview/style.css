@@ -1,0 +1,45 @@
+/* Container needed to position the overlay. Adjust the width as needed */
+.cocktailcontainer {
+  position: relative;
+  width: 100%;
+}
+
+/* The overlay effect - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: white;
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* When you mouse over the container, fade in the overlay title */
+.cocktailcontainer:hover .overlay {
+  opacity: 1;
+}
+
+.heading{
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  font-style: italic;
+  text-align: center;
+}
+
+.welcoming{
+  color:white;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.card{
+  background-color: rgb(207, 181, 59);
+}

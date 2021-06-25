@@ -1,12 +1,13 @@
 //Import modules
 import React, { Component } from 'react';
+import "./style.css"
 
 class Impressum extends Component {
     state = {  }
     render() { 
         return (
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-outline-info me-md-2">Impressum</button> 
+            <div className="d-grid gap-2 d-md-flex justify-content-md-center background">
+                <button type="button" className="btn me-md-2">Impressum</button> 
             </div>
         );
     }
