@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 
 const SearchBar = props => {
-  const [cocktails, setCocktails] = useState()
-
+  const [cocktails, setCocktails] = useState([])
     const onChangeSearchCocktail = e => {
         const searchCocktail = e.target.value; 
     

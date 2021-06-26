@@ -1,24 +1,25 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
+import TestRenderer, { act } from 'react-test-renderer';
 import SearchBar from './searchbarelement'
 
 test("renders correctly", () => {
     const {queryByPlaceholderText} = render(<SearchBar/>)
-    expect(queryByPlaceholderText("Suche")).toBeTruthy()
+    const input = queryByPlaceholderText("Suche")
+    expect(input).toBeTruthy()
 })
 
-/*
-// Hier noch Fehler bei searchbarelement .filter.
+//Funktioniert noch nicht komplett
+describe('input should be the same', () => {
+    it('should handle onChange event', () => {
+      const testRenderer = TestRenderer.create(<SearchBar />);
+      const testInstance = testRenderer.root;
+      expect(testInstance.findByType('input').props.value).toBeUndefined();
+      const mEvent = { target: { value: 'WhiteRussian' } };
+      act(() => {
+        testInstance.findByType('input').props.onChange(mEvent);
+      });
+      expect(testInstance.findByType('input').props.value).toEqual('WhiteRussian');
+    });
+});
 
-describe("Input value", () => {
-    test("updates on change", () => {
-        const {queryByPlaceholderText} = render(<SearchBar/>)
-
-        const searchInput = queryByPlaceholderText('Suche');
-
-        fireEvent.change(searchInput, {target: {value: "test"}})
-
-        expect(searchInput.value).toBe("test")
-    })
-})
-*/
