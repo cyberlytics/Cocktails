@@ -38,13 +38,15 @@ const StepbyStep = props => {
                 <button className="btn goldenbtn mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
                 { instructionactive ? 
                 <div>
+                    <Pagination steps={props.data.steps} paginate={paginate} increasestep={increasestep} decreasestep={decreasestep} currentStep={currentStep}></Pagination>
+                    
                     <ul className='list-group mb-4'>
                         <div className="text-white">
                             {props.data.steps[currentStep]}
                         </div>
                     </ul>
 
-                <Pagination steps={props.data.steps} paginate={paginate} increasestep={increasestep} decreasestep={decreasestep} currentStep={currentStep}></Pagination>
+                
                 </div>
                 : null 
                 }

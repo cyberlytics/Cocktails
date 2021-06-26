@@ -6,7 +6,7 @@ const Pagination = props => {
     return(
         <nav>
             <ul className="pagination">
-                <button onClick={()=> props.decreasestep()} className="page-link btn goldenbtn text-dark">Previus</button>
+                <button onClick={()=> props.decreasestep()} className="page-link btn goldenbtn text-dark">Zurück</button>
 
                 {
 
@@ -19,7 +19,7 @@ const Pagination = props => {
                     ))
                 }
 
-                <button onClick={()=> props.increasestep()} className="page-link btn goldenbtn text-dark">Next</button>
+                <button onClick={()=> props.increasestep()} className="page-link btn goldenbtn text-dark">Weiter</button>
 
             </ul>
         </nav>
