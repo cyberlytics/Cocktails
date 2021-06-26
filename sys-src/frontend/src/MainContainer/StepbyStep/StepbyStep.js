@@ -3,9 +3,12 @@ import Pagination from './Pagination'
 import "./style.css"
 
 const StepbyStep = props => {
-    const[currentStep, setCurrentStep] = useState(props.data.steps[0]);
+    const[currentStep, setCurrentStep] = useState(0);
 
     const paginate = (stepNumber) => setCurrentStep(stepNumber)
+
+    const increasestep = () => currentStep < (props.data.steps.length)-1 ? setCurrentStep(currentStep+1) : setCurrentStep(currentStep)
+    const decreasestep = () => currentStep > 0 ? setCurrentStep(currentStep-1) : setCurrentStep(currentStep)
 
     const [instructionactive, setinstructionactive] = useState(false)
     const onClick = () => setinstructionactive(true)
@@ -35,13 +38,15 @@ const StepbyStep = props => {
                 <button className="btn goldenbtn mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
                 { instructionactive ? 
                 <div>
+                    <Pagination steps={props.data.steps} paginate={paginate} increasestep={increasestep} decreasestep={decreasestep} currentStep={currentStep}></Pagination>
+                    
                     <ul className='list-group mb-4'>
                         <div className="text-white">
-                            {currentStep}
+                            {props.data.steps[currentStep]}
                         </div>
                     </ul>
 
-                <Pagination steps={props.data.steps} paginate={paginate} currentStep={currentStep}></Pagination>
+                
                 </div>
                 : null 
                 }
