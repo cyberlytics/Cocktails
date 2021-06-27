@@ -105,7 +105,7 @@ export default class UserController{
             })
             return;
         }
-        //At least two numbers
+        //At least one number
         var regex = new RegExp("[0-9]");
         if (!regex.test(password)) {
             res.json({
