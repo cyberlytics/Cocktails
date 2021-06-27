@@ -23,13 +23,13 @@ const StepbyStep = props => {
                     {                        
                         props.data.ingredients.map( (ingredient, i) => (
                         <div key={`ingredient-test-${i}`}>
-                            {ingredient.quantity.quantity}
+                            {ingredient.quantity.quantity}{" "}
                             {ingredient.quantity.unit} : {" "}
                             <b>{ingredient.name}</b> 
                         </div>
                     ))
                     }
-                    {props.data.calories.amount}
+                    {props.data.calories.amount}{" "}
                     {props.data.calories.unit} : {" "}
                     <b>Kalorien</b>
                 </h3>
