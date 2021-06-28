@@ -36,6 +36,41 @@ class App extends Component {
         this.setState({cocktails: filteredCocktails});
     }
 
+    getFavourites() {
+        async function fetchData(self) {
+            let userid = localStorage.getItem('isLoggedInId');
+            try {
+                let res = await fetch(apiurl + '/user/' + userid + '/favourites', {
+                    method: "get",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                });
+                
+                //process result
+                let result = await res.json();
+
+                //Request successfull
+                if (result && result.success) {
+                    self.setState({
+                        //Add favourite field to every existing cocktail and set its value according to the fetch result
+                        cocktails: self.state.cocktails.map(cocktail => ({...cocktail, favourite: result.cocktails.map(favcocktail => favcocktail.name).includes(cocktail.name)})),
+                    });
+                }
+                //Request failed
+                else if (result && result.success === false) {
+                  self.setState({
+                    favouritedCocktails : null,
+                  })
+                }
+              } catch (error) {
+                  console.log(error.message);
+              }
+            }
+        fetchData(this);
+    }
+
     getUserIsLoggedIn() {
         async function fetchData(self) {
             try {
@@ -146,6 +181,9 @@ class App extends Component {
     async componentDidMount() {
         //Get Cocktails
         this.retrieveCocktails();
+
+        //Get favourited cocktails
+        this.getFavourites();
 
         //Check if user is already logged in
         this.getUserIsLoggedIn();
