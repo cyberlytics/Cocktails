@@ -19,6 +19,12 @@ class App extends Component {
     }
     static tempcocktails
 
+    setValue(property, val) {
+        this.setState({
+            [property] : val
+        })
+    }
+
     retrieveCocktails() {
         CocktailsDataService.getAll()
           .then(response => {
@@ -39,6 +45,9 @@ class App extends Component {
     getFavourites() {
         async function fetchData(self) {
             let userid = localStorage.getItem('isLoggedInId');
+            if (!userid) {
+                return;
+            }
             try {
                 let res = await fetch(apiurl + '/user/' + userid + '/favourites', {
                     method: "get",
@@ -73,8 +82,13 @@ class App extends Component {
 
     getUserIsLoggedIn() {
         async function fetchData(self) {
+            const isLoggedInId = localStorage.getItem('isLoggedInId');
+            if (!isLoggedInId) {
+                self.setState({userIsLoggedIn : false});
+                return;
+            }
+
             try {
-                const isLoggedInId = localStorage.getItem('isLoggedInId');
                 let res = await fetch(apiurl + '/login/' + isLoggedInId, {
                 method: 'get',
                 headers: {
