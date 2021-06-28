@@ -6,17 +6,20 @@ const Pagination = props => {
     return(
         <nav>
             <ul className="pagination">
+                <button onClick={()=> props.decreasestep()} className="page-link btn goldenbtn text-dark">Zurück</button>
 
                 {
 
                     props.steps.map( (number,i) => (
-                        <li key={number} className={number===props.currentStep? "activated":""}>
-                            <button onClick={()=> props.paginate(number)} className="page-link btn goldenbtn text-dark">
+                        <li key={i} className={i===props.currentStep? "activated":""}>
+                            <button onClick={()=> props.paginate(i)} className={i===props.currentStep? "page-link btn text-dark activated":"page-link btn goldenbtn text-dark"}>
                                 {i+1}
                             </button>
                         </li>
                     ))
                 }
+
+                <button onClick={()=> props.increasestep()} className="page-link btn goldenbtn text-dark">Weiter</button>
 
             </ul>
         </nav>
