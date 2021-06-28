@@ -9,7 +9,7 @@ test("render Login correctly", () => {
     expect(button).toBeTruthy()
 })
 
-describe("clickButton", () =>{
+describe("click Login", () =>{
     it("onClick", () => {
         const { queryByText } = render(<LoginElement />)
         const button = queryByText("Login")
@@ -18,8 +18,16 @@ describe("clickButton", () =>{
     }) 
 })
 
-// Hier muss wahrscheinlich ein Login simuliert werden
     test("render Logout correctly", () => {
-        const { queryByText } = render(<LoginElement />)
+        const { queryByText } = render(<LoginElement userIsLoggedIn={true}/>)
         expect(queryByText("Logout")).toBeTruthy()
+    })
+
+    describe("click Logout", () =>{
+        it("onClick", () => {
+            const { queryByText } = render(<LoginElement userIsLoggedIn={true}/>)
+            const button = queryByText("Logout")
+            fireEvent.click(button)
+            expect(LoginForm).toBeTruthy();
+        }) 
     })
