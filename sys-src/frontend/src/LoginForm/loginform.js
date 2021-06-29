@@ -79,12 +79,14 @@ class LoginForm extends Component {
                 window.location.href='/';
             }
             else if (result && result.success === false) {
-                //TODO: USER BENACHRICHTIGEN
+                alert(result.msg);
                 this.resetForm();
+                window.location.href='/login';
             }
         } catch (error) {
-            console.log(error.message);
+            alert("Fehler:" + error.message);
             this.resetForm();
+            window.location.href='/login';
         }
     }
 
