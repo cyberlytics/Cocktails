@@ -22,8 +22,10 @@ const ListOfCocktails = props => {
           });
 
           let result = await res.json();
-          setfavouritesIDs(result.cocktailid);
 
+          if(result.cocktailid != undefined){
+            setfavouritesIDs(result.cocktailid);
+          }
         } catch (error) {
             console.log(error.message);
         }
