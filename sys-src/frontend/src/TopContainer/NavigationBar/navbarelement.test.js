@@ -78,11 +78,11 @@ test("logged in: click Favoriten", () =>{
 
 // Wieso geht das hier nicht? 
 // Schaltet er vllt den button nicht an?
-test("logged out: click Letzte Cocktails", () => {
+test("logged out: click Letzte Cocktails", async () => {
     const handleClick = jest.fn()
     render(<NavBarElement disabled={false} onClick={handleClick} value="Letzte Cocktails">Letzte Cocktails</NavBarElement>)
     fireEvent.click(screen.getByText(/Letzte Cocktails/i))
-    expect(handleClick).toHaveBeenCalledTimes(1)
+    await expect(handleClick).toHaveBeenCalledTimes(1)
   })
 /*
 test("logged in: click Letzte Cocktails", () => {
