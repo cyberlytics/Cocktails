@@ -96,7 +96,7 @@ class LoginForm extends Component {
 
     render() { 
         return (
-            <div style={styles.styleDiv} className="login-form" onKeyPress={this.handleKeypress}>
+            <div style={styles.styleDiv} className="login-form" data-testid="LoginFormActive" onKeyPress={this.handleKeypress}>
                 <h1 style={styles.styleHeadline}>Login</h1>
                 <div style={styles.styleInputField}><IconTextField type="username" placeholder="Username" iconclass="fas fa-user"
                 value={this.state.username ? this.state.username : ''} onChange={ (val) => this.setInputValue('username', val)} /></div>

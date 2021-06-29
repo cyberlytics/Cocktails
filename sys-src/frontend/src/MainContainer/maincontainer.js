@@ -34,7 +34,7 @@ class MainContainer extends Component {
                             <h1>{this.props.userIsLoggedIn ? "EIGENEN COCKTAIL ERSTELLEN" : "NICHT EINGELOGGT"}</h1>
                         </Route>
                         <Route path="/Login">
-                            <LoginForm/>
+                            <LoginForm data-testid="LoginFormActive"/>
                         </Route>
                         <Route exact path="/">
                             <Redirect to="/Cocktailoverview" />
