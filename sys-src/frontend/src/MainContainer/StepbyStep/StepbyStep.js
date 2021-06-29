@@ -30,7 +30,7 @@ const StepbyStep = props => {
             <div className="col">
                 <button className="btn goldenbtn mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
                 { instructionactive ? 
-                <div>
+                <div data-testid="PaginationActiveTest">
                     <Pagination steps={props.data.steps}/>               
                 </div>
                 : null 
