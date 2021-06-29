@@ -13,7 +13,7 @@ const decreasestep = () => currentStep > 0 ? setCurrentStep(currentStep-1) : set
     return(
         <nav>
             <ul className="pagination">
-                <button onClick={()=> decreasestep()} className="page-link btn goldenbtn text-dark">Zurück</button>
+                <button onClick={()=> decreasestep()} className="page-link btn goldenbtn text-dark" data-testid="BackButton">Zurück</button>
 
                 {
 
@@ -26,7 +26,7 @@ const decreasestep = () => currentStep > 0 ? setCurrentStep(currentStep-1) : set
                     ))
                 }
 
-                <button onClick={()=> increasestep()} className="page-link btn goldenbtn text-dark">Weiter</button>
+                <button onClick={()=> increasestep()} className="page-link btn goldenbtn text-dark" data-testid="NextButton">Weiter</button>
 
             </ul>
 
