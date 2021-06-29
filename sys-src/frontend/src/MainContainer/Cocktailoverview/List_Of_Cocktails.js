@@ -74,7 +74,8 @@ const ListOfCocktails = props => {
                             ingredients={cocktail.ingredients}
                             isFavourite={fav}
                             toggleFavourite={props.toggleFavourite}
-                            favouriteDisabled={!props.userIsLoggedIn}/>
+                            favouriteDisabled={!props.userIsLoggedIn}
+                            userIsLoggedIn={props.userIsLoggedIn}/>
                   );
             })
           }
