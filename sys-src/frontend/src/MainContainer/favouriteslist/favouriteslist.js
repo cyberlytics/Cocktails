@@ -10,10 +10,10 @@ function FavouritesList(props) {
     return (
       <div className="row">
         {
-          props.cocktails.forEach((cocktail) => {
+          props.cocktails.map((cocktail) => {
             if (cocktail.favourite) {
               return (
-                <Cocktail name={cocktail.name} ingredients={cocktail.ingredients} isFavourite={true} toggleFavourite={props.toggleFavourite} favouriteDisabled={!props.userIsLoggedIn}/>
+                <Cocktail image={cocktail.image} name={cocktail.name} ingredients={cocktail.ingredients} isFavourite={true} toggleFavourite={props.toggleFavourite} favouriteDisabled={!props.userIsLoggedIn}/>
               );
             }
           })
