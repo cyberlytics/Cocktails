@@ -114,46 +114,6 @@ class App extends Component {
         return this.state.cocktails.find(cocktail => cocktail.name === cocktailname)._id;
     }
 
-    toggleFavourite(favname) {
-        async function toggle(self) {
-            await self.setState({
-                cocktails: self.state.cocktails.map(cocktail => ({...cocktail, favourite: cocktail.name === favname ? !cocktail.favourite : cocktail.favourite})),
-            });
-            self.getCocktailId(favname);
-            let userid = localStorage.getItem('isLoggedInId');
-            if(userid !== null) {
-                let cocktailid = self.getCocktailId(favname);
-                try {
-                    let res = await fetch(apiurl + '/user/setFavourite', {
-                        method: "post",
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            userid: userid, 
-                            cocktail: cocktailid,
-                        })
-                    });
-                    
-                    //process result
-                    let result = await res.json();
-        
-                    //Successful authenticated
-                    if (result && result.success) {
-
-                    }
-                    else if (result && result.success === false) {
-
-                    }
-                } catch (error) {
-
-                }
-            }
-        }
-        toggle(this);
-    }
-
     async componentDidMount() {
         //Get Cocktails
         this.retrieveCocktails();
@@ -167,7 +127,7 @@ class App extends Component {
         return (
             <div>
                 <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} tempcocktails={(this.state.tempcocktails)} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
-                <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)} toggleFavourite={(val) =>this.toggleFavourite(val)}/>
+                <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)}/>
                 <BottomContainer/>
             </div>
         );
