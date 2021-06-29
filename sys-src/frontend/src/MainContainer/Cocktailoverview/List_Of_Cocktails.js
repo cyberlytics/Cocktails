@@ -2,18 +2,13 @@ import React, {useState, useEffect} from 'react'
 
 //Import own UI-Elements
 import Cocktail from './cocktail';
-import cocktailpic from "./cocktails.png"
 import { apiurl } from '../../api';
-
+import cocktailpic from "./cocktails.png"
 
 const ListOfCocktails = props => {
   const [cocktails, setCocktails] = useState([])
   const [favouritesIDs, setfavouritesIDs] = useState([])
-
-  useEffect( () => {
-    setCocktails(props.cocktails);
-  },[props.cocktails]);
-
+    
   useEffect( () => {
     async function fetchCocktailsIDs(){
       let userid = localStorage.getItem('isLoggedInId');
@@ -37,6 +32,11 @@ const ListOfCocktails = props => {
     fetchCocktailsIDs();
     }, []);
 
+  useEffect( () => {
+    setCocktails(props.cocktails);
+  },[props.cocktails]);
+
+
     return (
       <div>
         <div className="heading">
@@ -57,6 +57,7 @@ const ListOfCocktails = props => {
             cocktails.map((cocktail,i) => {
               //check, if the cocktail is a favourite 
               let fav = false;
+
               favouritesIDs.forEach(id => {
                 if(id === cocktail._id){
                   fav = true;

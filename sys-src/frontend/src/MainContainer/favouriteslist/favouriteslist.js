@@ -34,18 +34,17 @@ const FavouritesList = props => {
     return (
       <div className="row">
         {
-          favCocktails.map((cocktail) => {
-            if(cocktail != null){
-              return (
-                <Cocktail key={cocktail.name}
-                          name={cocktail.name}
-                          ingredients={cocktail.ingredients}
-                          isFavourite={true}
-                          toggleFavourite={props.toggleFavourite}
-                          favouriteDisabled={!props.userIsLoggedIn}
-                          image={cocktail.image}/>
-              );
-            }
+          favCocktails.map((cocktail) => {            
+            return (
+              <Cocktail key={cocktail.name}
+                        id={cocktail._id}
+                        name={cocktail.name}
+                        ingredients={cocktail.ingredients}
+                        isFavourite={true}
+                        toggleFavourite={props.toggleFavourite}
+                        favouriteDisabled={!props.userIsLoggedIn}
+                        image={cocktail.image}/>
+            );
           })
         }
       </div>
