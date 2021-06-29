@@ -24,7 +24,7 @@ const FavouritesList = props => {
           setFavCocktails(result.cocktails);
 
         } catch (error) {
-            console.log(error.message);
+          console.log(error.message);
         }
     }
 
@@ -43,7 +43,8 @@ const FavouritesList = props => {
                         isFavourite={true}
                         toggleFavourite={props.toggleFavourite}
                         favouriteDisabled={!props.userIsLoggedIn}
-                        image={cocktail.image}/>
+                        image={cocktail.image}
+                        userIsLoggedIn={props.userIsLoggedIn}/>
             );
           })
         }
