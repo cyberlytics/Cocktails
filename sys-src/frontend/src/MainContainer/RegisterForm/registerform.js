@@ -19,7 +19,7 @@ class RegisterForm extends Component {
             passwordValidation: '',
             buttonDisabled: false
         };
-        this.onKeyUp = this.handleEnter.bind(this);
+        this.onKeyUp = this.handleKeypress.bind(this);
     }
 
     componentDidMount() {
@@ -33,19 +33,12 @@ class RegisterForm extends Component {
             passwordValidation: '',
             buttonDisabled: false
         })
-        console.log(this.state);
     }
 
     setInputValue(property, val) {
         this.setState({
             [property] : val
         })
-    }
-
-    handleEnter(e) {
-        if (e.charCode === 13) {
-            this.handleSubmit();
-        }
     }
 
     async handleSubmit() {
@@ -106,17 +99,21 @@ class RegisterForm extends Component {
             <div style={styles.styleDiv} className="login-form" onKeyPress={this.handleKeypress}>
                 <h1 style={styles.styleHeadline}>Register</h1>
 
-                <div style={styles.styleInputField}><IconTextField type="username" placeholder="Username" iconclass="fas fa-user"
-                value={this.state.username ? this.state.username : ''} onChange={ (val) => this.setInputValue('username', val)} /></div>
+                <div style={styles.styleInputField}>
+                    <IconTextField type="username" name="usr" placeholder="Username" iconclass="fas fa-user" value={this.state.username ? this.state.username : ''} onChange={ (val) => this.setInputValue('username', val)} />
+                </div>
                 
-                <div style={styles.styleInputField}><IconTextField type="password" placeholder="Password" iconclass="fas fa-lock"
-                value={this.state.password ? this.state.password : ''} onChange={ (val) => this.setInputValue('password', val)} /></div>
+                <div style={styles.styleInputField}>
+                    <IconTextField type="password" placeholder="Password" className="password-input" iconclass="fas fa-lock" value={this.state.password ? this.state.password : ''} onChange={ (val) => this.setInputValue('password', val)} />
+                </div>
                 
-                <div style={styles.styleInputField}><IconTextField type="password" placeholder="Password Validation" iconclass="fas fa-lock"
-                value={this.state.passwordValidation ? this.state.passwordValidation : ''} onChange={ (val) => this.setInputValue('passwordValidation', val)} /></div>
+                <div style={styles.styleInputField}>
+                    <IconTextField type="password" placeholder="Password Validation" iconclass="fas fa-lock" value={this.state.passwordValidation ? this.state.passwordValidation : ''} onChange={ (val) => this.setInputValue('passwordValidation', val)} />
+                </div>
                 
-                <div style={styles.styleInputField}><button style={styles.styleButton} variant="contained" type="submit" class="btn btn-primary"
-                onClick={() => this.handleSubmit() } disabled={this.state.buttonDisabled}>Submit</button></div>
+                <div style={styles.styleInputField}>
+                    <button style={styles.styleButton} variant="contained" type="submit" className="btn btn-primary" onClick={() => this.handleSubmit() } disabled={this.state.buttonDisabled}>Submit</button>
+                </div>
             </div>
         );
     }
