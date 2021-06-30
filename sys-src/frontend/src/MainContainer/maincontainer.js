@@ -42,7 +42,7 @@ const MainContainer = props => {
                     <Route path="/register">
                         <RegisterForm/>
                     </Route>                    
-                    <CreateRoutes/>
+                    <CreateRoutes cocktails={props.cocktails}/>
                 </Switch>
             </BrowserRouter>
             </div>
