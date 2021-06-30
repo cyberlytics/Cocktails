@@ -12,15 +12,15 @@ class LoginElement extends Component {
     render() {
         if (!this.props.userIsLoggedIn) {
             return (
-                <div style={styles.styleDiv}>
-                    <button data-testid="LoginButton" className="btn btn-outline-primary" onClick={this.props.redirect}>Login</button>
+                <div className="styleDiv" data-testid="LoginButton">
+                    <button className="btn btn-outline-primary" onClick={this.props.redirect}>Login</button>
                 </div>
             );
         }
         else {
             return (
                 <div className="styleDiv">
-                    <button className="btn navbutton" onClick={this.props.onLogout}>Logout</button>
+                    <button className="btn btn-outline-primary" onClick={this.props.onLogout}>Logout</button>
                 </div>
             );   
         }
