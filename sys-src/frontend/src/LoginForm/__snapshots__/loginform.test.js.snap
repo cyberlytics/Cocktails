@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests for LoginForm no submit with empty password 1`] = `undefined`;
+
+exports[`Tests for LoginForm no submit with empty username 1`] = `undefined`;
+
+exports[`Tests for LoginForm submit with Enter key press works 1`] = `undefined`;
