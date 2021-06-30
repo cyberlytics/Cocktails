@@ -70,6 +70,7 @@ class App extends Component {
             }
             }
             catch(e) {
+                self.setState({userIsLoggedIn : false});
                 console.log(e.message);
             }
         }
