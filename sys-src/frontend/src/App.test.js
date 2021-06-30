@@ -111,6 +111,15 @@ describe('Test for RegisterForm', () => {
             expect(component.state.userIsLoggedIn).toBe(true);
         });
 
+        it('test getCocktailId', async () => {
+            const component = TestUtils.renderIntoDocument(
+                <App/>
+            );
+            component.state.cocktails = [{ name: "WhiteRussian", _id: 12345}];
+            let id = component.getCocktailId("WhiteRussian")
+            expect(id).toBeTruthy();
+        });
+
         //Incomplete
         it('test getUserIsLoggedIn', async () => {
             const component = TestUtils.renderIntoDocument(
