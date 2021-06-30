@@ -18,7 +18,7 @@ class LoginForm extends Component {
             password: '',
             buttonDisabled: false
         };
-        this.onKeyUp = this.handleEnter.bind(this);
+        this.onKeyUp = this.handleKeypress.bind(this);
     }
 
     resetForm() {
@@ -37,12 +37,6 @@ class LoginForm extends Component {
         this.setState({
             [property] : val
         })
-    }
-
-    handleEnter(e) {
-        if (e.charCode === 13) {
-            this.handleSubmit();
-        }
     }
 
     async handleSubmit() {
@@ -77,16 +71,18 @@ class LoginForm extends Component {
             if (result && result.success) {
                 localStorage.setItem('isLoggedInId', result.id);
                 window.location.href='/';
+                return true;
             }
             else if (result && result.success === false) {
                 alert(result.msg);
                 this.resetForm();
                 window.location.href='/login';
+                return false;
             }
         } catch (error) {
             alert("Fehler:" + error.message);
             this.resetForm();
-            window.location.href='/login';
+            return false;
         }
     }
 
