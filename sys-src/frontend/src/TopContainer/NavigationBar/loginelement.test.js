@@ -32,6 +32,7 @@ test("logged out: click Login", () =>{
 
 test("logged in: click Logout", () =>{
     render(<LoginElement userIsLoggedIn={true}/>)
+    const loginrender = render(<LoginElement userIsLoggedIn={false}/>)
     screen.getByText("Logout").click()
-    expect(screen.getByTestId('LoginButton')).toBeTruthy();
+    expect(loginrender.getByText('Login')).toBeTruthy();
 })
