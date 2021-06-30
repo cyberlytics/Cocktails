@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for RegisterForm no submit with empty password 1`] = `undefined`;
+
+exports[`Test for RegisterForm no submit with empty password validation 1`] = `undefined`;
+
+exports[`Test for RegisterForm no submit with empty username 1`] = `undefined`;
+
+exports[`Test for RegisterForm submit with Enter key press works 1`] = `undefined`;

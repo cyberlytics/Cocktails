@@ -28,7 +28,7 @@ class App extends Component {
     retrieveCocktails() {
         CocktailsDataService.getAll()
           .then(response => {
-            this.setState({cocktails: response.data})
+            this.setState({cocktails: response.data || []})
             this.setState({tempcocktails: response.data})
           })
     }
