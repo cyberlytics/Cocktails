@@ -37,7 +37,7 @@ class TopContainer extends Component {
                                     <NavBarElement className="nav-link" href="#" value={"Cocktail erstellen"} redirect={event => window.location.href='/CreateCocktail'} userIsLoggedIn={this.props.userIsLoggedIn}/>
                             </li>
                             <li className="nav-item">
-                                    <LoginElement className="nav-link" href="#" value={"Login"} redirect={event => window.location.href='/login'} userIsLoggedIn={this.props.userIsLoggedIn} onLogout={this.props.onLogout}/>
+                                    <LoginElement className="nav-link" href="#" value={"Login"} data-testid="LoginButton" redirect={event => window.location.href='/login'} userIsLoggedIn={this.props.userIsLoggedIn} onLogout={this.props.onLogout}/>
                             </li>
                         </ul>
                     </div>              
