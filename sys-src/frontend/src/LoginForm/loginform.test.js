@@ -6,11 +6,10 @@ import TestUtils from 'react-dom/test-utils'
 
 //Import own modules
 import LoginForm from './loginform';
-import { handleSubmit } from './loginform';
 
 
 describe('Tests for LoginForm', () => {
-    test("Test headline rendering", () => {
+    test("Test headline in LoginForm rendering", () => {
         const { getAllByText } = render(<LoginForm/>);
         expect(getAllByText(/register/i)[0]).toBeInTheDocument();
     });
