@@ -11,7 +11,7 @@ test("renders Suchfunktion correctly", () => {
 test("handle onChange event", () => {
   const searchCocktail = jest.fn((value) => {})
   const cocktailList = [{name: 'WhiteRussian'}, {name: 'Mojito'}]
-  const {queryByPlaceholderText} = render(<SearchBar tempcocktails={cocktailList} onSearchFiltered={searchCocktail}/>)
+  const {queryByPlaceholderText} = render(<SearchBar allcocktails={cocktailList} onSearchFiltered={searchCocktail}/>)
   const input = queryByPlaceholderText("Suche")
   fireEvent.change(input, {target: {value: "WhiteRussian"}})
   expect(input.value).toBe("WhiteRussian")
