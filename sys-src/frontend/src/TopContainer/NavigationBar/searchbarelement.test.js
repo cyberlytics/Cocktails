@@ -1,6 +1,5 @@
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import TestRenderer, { act } from 'react-test-renderer';
 import SearchBar from './searchbarelement'
 
 test("renders Suchfunktion correctly", () => {
@@ -9,18 +8,11 @@ test("renders Suchfunktion correctly", () => {
     expect(input).toBeTruthy()
 })
 
-//Funktioniert noch nicht komplett
-describe('input should be the same', () => {
-    it('should handle onChange event', () => {
-      const testRenderer = TestRenderer.create(<SearchBar onSearchFiltered="WhiteRussian"/>);
-      const testInstance = testRenderer.root;
-      
-      expect(testInstance.findByType('input').props.value).toBeUndefined();
-      const mEvent = { target: { value: 'WhiteRussian' } };
-      act(() => {
-        testInstance.findByType('input').props.onChange(mEvent);
-      });
-      expect(testInstance.findByType('input').props.value).toEqual('WhiteRussian');
-    });
-});
-
+test("handle onChange event", () => {
+  const searchCocktail = jest.fn((value) => {})
+  const cocktailList = [{name: 'WhiteRussian'}, {name: 'Mojito'}]
+  const {queryByPlaceholderText} = render(<SearchBar tempcocktails={cocktailList} onSearchFiltered={searchCocktail}/>)
+  const input = queryByPlaceholderText("Suche")
+  fireEvent.change(input, {target: {value: "WhiteRussian"}})
+  expect(input.value).toBe("WhiteRussian")
+})

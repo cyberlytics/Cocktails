@@ -13,7 +13,7 @@ class LoginElement extends Component {
         if (!this.props.userIsLoggedIn) {
             return (
                 <div style={styles.styleDiv}>
-                    <button className="btn btn-outline-primary" onClick={this.props.redirect}>Login</button>
+                    <button data-testid="LoginButton" className="btn btn-outline-primary" onClick={this.props.redirect}>Login</button>
                 </div>
             );
         }
