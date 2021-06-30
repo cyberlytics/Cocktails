@@ -15,9 +15,9 @@ class App extends Component {
     state = {
         userIsLoggedIn : false,
         cocktails : [],
-        tempcocktails : [],
+        allcocktails : [],
     }
-    static tempcocktails
+    static allcocktails
 
     setValue(property, val) {
         this.setState({
@@ -127,7 +127,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} tempcocktails={(this.state.tempcocktails)} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
+                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} allcocktails={(this.state.allcocktails)} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
                 <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)}/>
                 <BottomContainer/>
             </div>
