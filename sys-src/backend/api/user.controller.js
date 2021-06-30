@@ -61,7 +61,7 @@ export default class UserController{
                     let newfavs = data[0].favourites.filter(item => item != cocktailid);
                     db.update("Users", { _id: ObjectID(userid)}, { favourites : newfavs})
                     .then(res => {
-                        console.log("Update");
+                        console.log("Cocktail deleted");
                     })
                     .catch(err => {
                         console.log(err.message);
@@ -73,7 +73,7 @@ export default class UserController{
                     tmp.push(ObjectID(cocktailid));
                     db.update("Users", { _id: ObjectID(userid)}, { favourites : tmp})
                     .then(res => {
-                        console.log("Update");
+                        console.log("Cocktail added");
                     })
                     .catch(err => {
                         console.log(err.message);
@@ -105,7 +105,7 @@ export default class UserController{
             })
             return;
         }
-        //At least two numbers
+        //At least one number
         var regex = new RegExp("[0-9]");
         if (!regex.test(password)) {
             res.json({
@@ -159,4 +159,31 @@ export default class UserController{
             })
         })
     }
+
+    static async getFavouriteCocktailsID(req, res) {
+        let userid = req.params.id;
+        console.log("ListIDs fetched");
+
+        //Find the users object-id
+        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
+               
+        db.find("Users", { _id: ObjectID(userid) })
+        .then (data => {
+            if (data && data.length === 0) {
+                res.json({
+                    success: false,
+                    msg: 'No user with given id found'
+                })
+            }
+
+            else {
+                res.json({success: true, cocktailid: data[0].favourites})
+            }
+        })
+        .catch(error => res.json({
+            success: false,
+            msg: 'Fehler beim Zugriff auf die Datenbank:' + error.message
+        }))
+    }
+
 }

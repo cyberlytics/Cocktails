@@ -1,0 +1,8 @@
+.styleDiv{
+    display: 'inline-block',
+}
+
+.navbutton:hover{
+    color: rgb(207, 181, 59);
+    text-decoration: underline;
+}

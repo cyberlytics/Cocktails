@@ -1,1 +1,0 @@
-npm install @material-ui/core react-router-dom @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
