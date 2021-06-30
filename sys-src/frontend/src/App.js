@@ -19,6 +19,12 @@ class App extends Component {
     }
     static tempcocktails
 
+    setValue(property, val) {
+        this.setState({
+            [property] : val
+        })
+    }
+
     retrieveCocktails() {
         CocktailsDataService.getAll()
           .then(response => {
@@ -36,45 +42,15 @@ class App extends Component {
         this.setState({cocktails: filteredCocktails});
     }
 
-    getFavourites() {
-        async function fetchData(self) {
-            let userid = localStorage.getItem('isLoggedInId');
-            try {
-                let res = await fetch(apiurl + '/user/' + userid + '/favourites', {
-                    method: "get",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                });
-                
-                //process result
-                let result = await res.json();
-
-                //Request successfull
-                if (result && result.success) {
-                    self.setState({
-                        //Add favourite field to every existing cocktail and set its value according to the fetch result
-                        cocktails: self.state.cocktails.map(cocktail => ({...cocktail, favourite: result.cocktails.map(favcocktail => favcocktail.name).includes(cocktail.name)})),
-                    });
-                }
-                //Request failed
-                else if (result && result.success === false) {
-                  self.setState({
-                    favouritedCocktails : null,
-                  })
-                }
-              } catch (error) {
-                  console.log(error.message);
-              }
-            }
-        fetchData(this);
-    }
-
     getUserIsLoggedIn() {
         async function fetchData(self) {
+            const isLoggedInId = localStorage.getItem('isLoggedInId');
+            if (!isLoggedInId) {
+                self.setState({userIsLoggedIn : false});
+                return;
+            }
+
             try {
-                const isLoggedInId = localStorage.getItem('isLoggedInId');
                 let res = await fetch(apiurl + '/login/' + isLoggedInId, {
                 method: 'get',
                 headers: {
@@ -138,52 +114,9 @@ class App extends Component {
         return this.state.cocktails.find(cocktail => cocktail.name === cocktailname)._id;
     }
 
-    toggleFavourite(favname) {
-        async function toggle(self) {
-            await self.setState({
-                cocktails: self.state.cocktails.map(cocktail => ({...cocktail, favourite: cocktail.name === favname ? !cocktail.favourite : cocktail.favourite})),
-            });
-            self.getCocktailId(favname);
-            let userid = localStorage.getItem('isLoggedInId');
-            if(userid !== null) {
-                let cocktailid = self.getCocktailId(favname);
-                try {
-                    let res = await fetch(apiurl + '/user/setFavourite', {
-                        method: "post",
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            userid: userid, 
-                            cocktail: cocktailid,
-                        })
-                    });
-                    
-                    //process result
-                    let result = await res.json();
-        
-                    //Successful authenticated
-                    if (result && result.success) {
-
-                    }
-                    else if (result && result.success === false) {
-
-                    }
-                } catch (error) {
-
-                }
-            }
-        }
-        toggle(this);
-    }
-
     async componentDidMount() {
         //Get Cocktails
         this.retrieveCocktails();
-
-        //Get favourited cocktails
-        this.getFavourites();
 
         //Check if user is already logged in
         this.getUserIsLoggedIn();
@@ -194,7 +127,7 @@ class App extends Component {
         return (
             <div>
                 <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} tempcocktails={(this.state.tempcocktails)} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
-                <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)} toggleFavourite={(val) =>this.toggleFavourite(val)}/>
+                <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)}/>
                 <BottomContainer/>
             </div>
         );

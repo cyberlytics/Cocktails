@@ -1,21 +1,51 @@
 //Import modules
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 
 //Import own UI-Elements
 import Cocktail from '../Cocktailoverview/cocktail';
+import { apiurl } from '../../api';
 
-function FavouritesList(props) {
+const FavouritesList = props => {
+  const [favCocktails, setFavCocktails] = useState([]);
 
+  useEffect(() => {
+    async function fetchData(){
+      let userid = localStorage.getItem('isLoggedInId');
+      try {
+          let res = await fetch(apiurl + '/user/' + userid + '/favourites', {
+              method: "get",
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+              },
+          });
+
+          let result = await res.json();
+          setFavCocktails(result.cocktails);
+
+        } catch (error) {
+          console.log(error.message);
+        }
+    }
+
+    fetchData();
+  }, []);
 
     return (
       <div className="row">
         {
-          props.cocktails.map((cocktail) => {
-            if (cocktail.favourite) {
-              return (
-                <Cocktail image={cocktail.image} name={cocktail.name} ingredients={cocktail.ingredients} isFavourite={true} toggleFavourite={props.toggleFavourite} favouriteDisabled={!props.userIsLoggedIn}/>
-              );
-            }
+          favCocktails.map((cocktail) => {            
+            return (
+              <Cocktail key={cocktail.name}
+                        id={cocktail._id}
+                        name={cocktail.name}
+                        ingredients={cocktail.ingredients}
+                        isFavourite={true}
+                        toggleFavourite={props.toggleFavourite}
+                        favouriteDisabled={!props.userIsLoggedIn}
+                        image={cocktail.image}
+                        userIsLoggedIn={props.userIsLoggedIn}/>
+            );
           })
         }
       </div>
