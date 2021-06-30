@@ -29,12 +29,12 @@ class App extends Component {
         CocktailsDataService.getAll()
           .then(response => {
             this.setState({cocktails: response.data || []})
-            this.setState({tempcocktails: response.data})
+            this.setState({allcocktails: response.data})
           })
     }
 
     getSearch(val){
-        this.setState({cocktails: this.state.tempcocktails})
+        this.setState({cocktails: this.state.allcocktails})
         //Get array of favourited cocktail names
         var favouritedCocktails = this.state.cocktails.filter(cocktail => cocktail.favourite).map(cocktail => cocktail.name);
         //Add the favourite tag accordingly to all search result
@@ -70,6 +70,7 @@ class App extends Component {
             }
             }
             catch(e) {
+                self.setState({userIsLoggedIn : false});
                 console.log(e.message);
             }
         }
