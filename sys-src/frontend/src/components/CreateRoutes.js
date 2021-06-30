@@ -1,25 +1,11 @@
-import React, {useState, useEffect} from 'react'
-import CocktailsDataService from "../Service/cocktails"
+import React from 'react'
 import { Route } from 'react-router-dom';
 import StepbyStep from '../MainContainer/StepbyStep/StepbyStep'
 
 const CreateRoutes = props => {
-  const [cocktails, setCocktails] = useState([])
-  
-  useEffect( () => {
-    retrieveCocktails();
-  }, [])
-
-  const retrieveCocktails = () => {
-    CocktailsDataService.getAll()
-      .then(response => {
-        console.log(response.data);
-        setCocktails(response.data)
-      })
-  }
-
-    return (            
-          cocktails.map((cocktail, index) => {
+    return (
+                 
+          props.cocktails.map((cocktail, index) => {
             return (
                 <Route key={index} path={ `/${cocktail.name}` }>
                     <StepbyStep data={cocktail}/>
