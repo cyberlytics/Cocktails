@@ -62,56 +62,56 @@ test("logged in: render Cocktail erstellen correctly", () => {
 //  SearchBar and Login are tested separately.
 */
 
-test("logged out: click Favoriten", () =>{
+test("logged in: click Favoriten", () =>{
         const handleRedirect = jest.fn()
         render(<NavBarElement userIsLoggedIn={true} value="Favoriten" redirect={handleRedirect}/>)
         fireEvent.click(screen.getByText("Favoriten"))
         expect(handleRedirect).toHaveBeenCalledTimes(1)
 })
 
-test("logged in: click Favoriten", () =>{
+test("logged out: click Favoriten", () =>{
     const handleRedirect = jest.fn()
     render(<NavBarElement userIsLoggedIn={false} value="Favoriten" redirect={handleRedirect}/>)
     fireEvent.click(screen.getByText("Favoriten"))
     expect(handleRedirect).toHaveBeenCalledTimes(0)
 })
 
-test("logged out: click Letzte Cocktails", () => {
+test("logged in: click Letzte Cocktails", () => {
     const handleRedirect = jest.fn()
     render(<NavBarElement userIsLoggedIn={true} value="Letzte Cocktails" redirect={handleRedirect}/>)
     fireEvent.click(screen.getByText("Letzte Cocktails"))
     expect(handleRedirect).toHaveBeenCalledTimes(1)
   })
   
-  test("logged in: click Letzte Cocktails", () => {
+  test("logged out: click Letzte Cocktails", () => {
     const handleRedirect = jest.fn()
     render(<NavBarElement userIsLoggedIn={false} value="Letzte Cocktails" redirect={handleRedirect}/>)
     fireEvent.click(screen.getByText("Letzte Cocktails"))
     expect(handleRedirect).toHaveBeenCalledTimes(0)
   })
 
-  test("logged out: click Meine Cocktails", () => {
+  test("logged in: click Meine Cocktails", () => {
     const handleRedirect = jest.fn()
     render(<NavBarElement userIsLoggedIn={true} value="Meine Cocktails" redirect={handleRedirect}/>)
     fireEvent.click(screen.getByText("Meine Cocktails"))
     expect(handleRedirect).toHaveBeenCalledTimes(1)
   })
   
-  test("logged in: click Meine Cocktails", () => {
+  test("logged out: click Meine Cocktails", () => {
     const handleRedirect = jest.fn()
     render(<NavBarElement userIsLoggedIn={false} value="Meine Cocktails" redirect={handleRedirect}/>)
     fireEvent.click(screen.getByText("Meine Cocktails"))
     expect(handleRedirect).toHaveBeenCalledTimes(0)
   })
 
-  test("logged out: click Cocktail erstellen", () => {
+  test("logged in: click Cocktail erstellen", () => {
     const handleRedirect = jest.fn()
     render(<NavBarElement userIsLoggedIn={true} value="Cocktail erstellen" redirect={handleRedirect}/>)
     fireEvent.click(screen.getByText("Cocktail erstellen"))
     expect(handleRedirect).toHaveBeenCalledTimes(1)
   })
   
-  test("logged in: click Cocktail erstellen", () => {
+  test("logged out: click Cocktail erstellen", () => {
     const handleRedirect = jest.fn()
     render(<NavBarElement userIsLoggedIn={false} value="Cocktail erstellen" redirect={handleRedirect}/>)
     fireEvent.click(screen.getByText("Cocktail erstellen"))
