@@ -1,6 +1,6 @@
 import List_Of_Cocktails from "./List_Of_Cocktails"
 import '@testing-library/jest-dom/extend-expect';
-import { fireEvent, getByText, render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 test("renderd List_Of_Cocktails correctly if user is logged in", () =>{
     const cocktails = [

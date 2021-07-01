@@ -117,15 +117,4 @@ describe('Tests for LoginForm', () => {
         //see if nothing has changed
         expect(component.container).toMatchSnapshot();
     });
-
-    //Unfinished
-    // it('test handleSubmit call', async () => {
-    //     const component = TestUtils.renderIntoDocument(
-    //         <LoginForm/>
-    //     );
-    //     component.state.username = "john";
-    //     component.state.password = "12345";
-    //     let success = await component.handleSubmit();
-    //     expect(success).toBeFalsy();
-    // });
 })
