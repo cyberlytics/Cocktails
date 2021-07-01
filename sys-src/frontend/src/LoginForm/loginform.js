@@ -21,6 +21,7 @@ class LoginForm extends Component {
         this.onKeyUp = this.handleKeypress.bind(this);
     }
 
+    //Reset form
     resetForm() {
         this.setState({
             username: '',
@@ -29,15 +30,18 @@ class LoginForm extends Component {
         })
     }
 
+    //Make sure form is accesible on the beginning
     componentDidMount() {
         this.resetForm();
     }
 
+    //method to pass to childs, which enables them to set state for username or password
     setInputValue(property, val) {
         this.setState({
             [property] : val
         })
     }
+
 
     async handleSubmit() {
         if (!this.state.username) {
@@ -47,11 +51,13 @@ class LoginForm extends Component {
             return;
         }
 
+        //When username and password were provided, then disable button and proceed
         this.setState({
             buttonDisabled : true
         })
 
         try {
+            //make API-Call
             let res = await fetch(apiurl + '/login', {
                 method: "post",
                 headers: {
@@ -64,7 +70,7 @@ class LoginForm extends Component {
                 })
             });
             
-            //process result
+            //process result to json
             let result = await res.json();
 
             //Successful authenticated
@@ -73,12 +79,14 @@ class LoginForm extends Component {
                 window.location.href='/';
                 return true;
             }
+            //if not successful then make alert with error text sent from api
             else if (result && result.success === false) {
                 alert(result.msg);
                 this.resetForm();
                 window.location.href='/login';
                 return false;
             }
+        //error handling
         } catch (error) {
             alert("Fehler:" + error.message);
             this.resetForm();
@@ -86,6 +94,7 @@ class LoginForm extends Component {
         }
     }
 
+    //Submit, when Enter Button was pressed
     handleKeypress = e => {
         if (e.key === "Enter") {
           this.handleSubmit();  

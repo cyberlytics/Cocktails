@@ -57,7 +57,9 @@ test('StepbyStep render correctly', () => {
     render(<StepbyStep data={cocktail}/>)
   }); 
 
+
 test('activate instruction', () => {
+    //example for an cocktail object
     const cocktail = {
         "_id": "60bd22e28f4183529aad2d23",
         "name": "WhiteRussian",

@@ -2,6 +2,9 @@ import React from 'react'
 import { useState } from 'react';
 import "./style.css"
 
+
+//returns a pagination witch paginate the preparation steps from the current cocktail
+//display a specific step by clicking "Weiter"-Button, "Zurück"-Button or a specific number of the pagination
 const Pagination = props => {
 const[currentStep, setCurrentStep] = useState(0);
 
