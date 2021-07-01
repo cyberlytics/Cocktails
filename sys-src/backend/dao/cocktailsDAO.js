@@ -1,6 +1,6 @@
 let cocktails
 
-export default class CocktailsDAO{
+module.exports = class CocktailsDAO{
     //Injekten der Datenbank und laden der Datan
     static async injectDB(conn) {
         if(cocktails) 

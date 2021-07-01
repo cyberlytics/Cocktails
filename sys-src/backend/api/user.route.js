@@ -1,5 +1,5 @@
-import express from "express"
-import UserController from "./user.controller.js";
+const express = require("express")
+const UserController = require("./user.controller.js");
 
 const router = express.Router()
 
@@ -8,4 +8,4 @@ router.route("/:id/favouritesid").get(UserController.getFavouriteCocktailsID);
 router.route("/setFavourite").post(UserController.setFavouriteCocktail);
 router.route("/register").post(UserController.registerNewUser);
 
-export default router   
+module.exports = router   

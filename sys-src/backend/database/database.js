@@ -1,4 +1,4 @@
-import mongodb from 'mongodb';
+const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 
 class Database {
@@ -60,4 +60,4 @@ class Database {
 	}
 }
 
-export default Database;
+module.exports = Database;
