@@ -2,7 +2,11 @@ import { useState } from 'react';
 import Pagination from './Pagination'
 import "./style.css"
 
+//returns the picture with the ingredients and calories from the selected cocktail
+//includes the step by step pagination
 const StepbyStep = props => {
+    
+    //set the pagination active if How-To-Mix button is clicked
     const [instructionactive, setinstructionactive] = useState(false)
     const onClick = () => setinstructionactive(true)
 
