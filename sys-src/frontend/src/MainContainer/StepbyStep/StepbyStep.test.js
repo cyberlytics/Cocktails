@@ -55,6 +55,7 @@ test('StepbyStep render correctly', () => {
     }
 
     render(<StepbyStep data={cocktail}/>)
+    expect(screen.getByText("WhiteRussian")).toBeInTheDocument()
   }); 
 
 

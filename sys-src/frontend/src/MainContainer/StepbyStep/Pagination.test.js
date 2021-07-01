@@ -14,7 +14,8 @@ test('Pagination render correctly', () => {
         "Entweder ohne Eis in eine vorgekühlte Coktailschale abseihen oder mit Eis in einem Tumbler servieren  ",
         "Die Sahne über den Rücken eines Barlöffels vorsichtig in das Glas laufen lassen, wobei sich die Schichten nicht mischen sollen"
     ]
-    render(<Pagination steps={steps}/>)  
+    render(<Pagination steps={steps}/>)
+    expect(screen.getByText("Sahne leicht anschlagen, so dass sie noch fließt und nicht steif ist")).toBeInTheDocument()  
 }); 
 
 test('increase step', () => {
