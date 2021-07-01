@@ -1,9 +1,9 @@
-import bcrypt from 'bcrypt';
-import mongodb from 'mongodb';
+const bcrypt =require('bcrypt');
+const mongodb = require('mongodb');
 const ObjectID = mongodb.ObjectID;
-import Database from '../database/database.js';
+const Database = require('../database/database.js');
 
-export default class LoginController{
+module.exports = class LoginController{
 
     static async login(req, res) {
         let usr = req.body.username;

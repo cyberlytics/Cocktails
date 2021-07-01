@@ -1,7 +1,7 @@
-import app from "./server.js"
-import mongodb from "mongodb"
-import dotenv from "dotenv"
-import CocktailsDAO from "./dao/cocktailsDAO.js"
+const app = require("./server.js")
+const mongodb = require("mongodb")
+const dotenv = require("dotenv")
+const CocktailsDAO = require("./dao/cocktailsDAO.js")
 
 dotenv.config()
 
