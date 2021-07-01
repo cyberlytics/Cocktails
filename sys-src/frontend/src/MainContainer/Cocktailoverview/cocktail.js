@@ -8,8 +8,7 @@ const Cocktail = props => {
 
     useEffect( () => {
         async function fetchCocktailsIDs(){
-            let test = await props.isFavourite;
-            setIsFavourite(test);
+            setIsFavourite(props.isFavourite);
         }        
         fetchCocktailsIDs();
       },[]);
