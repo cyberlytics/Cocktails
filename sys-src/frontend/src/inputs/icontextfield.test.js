@@ -4,13 +4,12 @@ import { render } from '@testing-library/react';
 //Import own modules
 import IconTextField from '../inputs/icontextfield';
 
-describe('<IconTextField/>', () => {
-    //Textfeld wird erfolgreich gerendert
+describe('Testfield is rendering correctly', () => {
     it('renders without crashing', () => {
         render(<IconTextField/>);
     })
-    //Propertys funktionieren
-    it('props working', () => {
+
+    it('Propertys are rendering correctly', () => {
         render(<IconTextField type={"password"}/>);
     })
 })

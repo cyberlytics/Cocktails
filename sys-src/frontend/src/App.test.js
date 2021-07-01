@@ -5,7 +5,6 @@ import { expect, it } from '@jest/globals';
 import TestUtils from 'react-dom/test-utils'
 
 //Import own modules
-import Cocktail from './MainContainer/Cocktailoverview/cocktail';
 import App from './App';
 
 describe('Test for RegisterForm', () => {
@@ -137,63 +136,5 @@ describe('Test for RegisterForm', () => {
             component.handleLogout();
             expect(component.state.userIsLoggedIn).toBe(false);
         });
-
-        // it('test getSearch function for no favourited cocktail in db', async () => {
-        //     const component = TestUtils.renderIntoDocument(
-        //         <App/>
-        //     );
-            
-        //     act(() => {
-        //         component.state.cocktails = [{
-        //             "_id": "60bd22e28f4183529aad2d23",
-        //             "name": "WhiteRussian",
-        //             "ingredients": [
-        //                 {
-        //                     "name": "Wodka",
-        //                     "quantity": {
-        //                         "quantity": "40",
-        //                         "unit": "ml"
-        //                     }
-        //                 },
-        //                 {
-        //                     "name": "Kaffeelikör (z.B. Kahlúa/Tia Maria)",
-        //                     "quantity": {
-        //                         "quantity": "20",
-        //                         "unit": "ml"
-        //                     }
-        //                 },
-        //                 {
-        //                     "name": "Eiswürfel",
-        //                     "quantity": {
-        //                         "quantity": "ein paar",
-        //                         "unit": "Stück"
-        //                     }
-        //                 },
-        //                 {
-        //                     "name": "Sahne",
-        //                     "quantity": {
-        //                         "quantity": "20/40",
-        //                         "unit": "ml"
-        //                     }
-        //                 }
-        //             ],
-        //             "steps": [
-        //                 "Sahne leicht anschlagen, so dass sie noch fließt und nicht steif ist",
-        //                 "Den Wodka in ein Rührglas geben",
-        //                 "Kaffeelikör zu dem Wodka in das Rührglas füllen",
-        //                 "Einen oder zwei Eiswürfel in das Rührglas zugeben",
-        //                 "Ca. 30 Sekunden den Inhalt des Rührglases verrühren ",
-        //                 "Entweder ohne Eis in eine vorgekühlte Coktailschale abseihen oder mit Eis in einem Tumbler servieren  ",
-        //                 "Die Sahne über den Rücken eines Barlöffels vorsichtig in das Glas laufen lassen, wobei sich die Schichten nicht mischen sollen"
-        //             ],
-        //             "calories": {
-        //                 "amount": "160/201",
-        //                 "unit": "kcal"
-        //             }
-        //         }];
-        //         component.getSearch(component.state.cocktails);
-        //     });
-        //     expect(component.state.cocktails[0].favourite).toBe(false);
-        // });
     })
 })
