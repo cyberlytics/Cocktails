@@ -9,11 +9,13 @@ export default class LoginController{
         let usr = req.body.username;
         let password = req.body.password;
 
-        //Find the users pw-hash
+        //Create Database Object
         const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
         db.find("Users", { username : usr })
         .then (data => {
+            //check if username is found in database
             if (data && data.length === 1) {
+                //compare passwords
                 bcrypt.compare(password, data[0].password, (bcrypErr, verified) => {
                     //Correct Password
                     if (verified) {
@@ -41,6 +43,7 @@ export default class LoginController{
                 })
             }
         })
+        //error handling
         .catch (error => {
             res.json({
                 success: false,
@@ -51,10 +54,13 @@ export default class LoginController{
 
     static async isLoggedIn(req, res, next) {
         if (req.params.id != null) {
+            //Create Database Object
             const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
             db.find("Users", { _id : ObjectID(req.params.id) })
             .then (data => {
+                //check if username is found in database
                 if (data && data.length === 1) {
+                    //send ok when found
                     res.json({
                         success: true,
                         username: data[0].Username
@@ -62,6 +68,7 @@ export default class LoginController{
                     return true;
                 }
                 else {
+                    //send not ok when not found
                     res.json({
                         success: false,
                         msg: "Session ID not found"
@@ -69,6 +76,7 @@ export default class LoginController{
                     return false;
                 }
             })
+            //error handling
             .catch (data => {
                 res.json({
                     success: false,
@@ -78,6 +86,7 @@ export default class LoginController{
         }
     }
 
+    //Handling logout call
     static async logout(req, res) {
         let userid = req.body.userid;
         console.log("Logging out user:", userid);
