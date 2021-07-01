@@ -1,6 +1,7 @@
 import List_Of_Cocktails from "./List_Of_Cocktails"
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react'
+import { act } from "react-dom/test-utils";
 
 test("renderd List_Of_Cocktails correctly if user is logged in", () =>{
     const cocktails = [
@@ -116,7 +117,9 @@ test("renderd List_Of_Cocktails correctly if user is logged in", () =>{
             }
         }
     ]
-    render(<List_Of_Cocktails cocktails={cocktails} userIsLoggedIn={true}/>)
+    act(() => {
+        render(<List_Of_Cocktails cocktails={cocktails} userIsLoggedIn={true}/>)        
+    })
 })
 
 test("renderd List_Of_Cocktails correctly if user is not logged in", () =>{
@@ -233,6 +236,8 @@ test("renderd List_Of_Cocktails correctly if user is not logged in", () =>{
             }
         }
     ]
-    render(<List_Of_Cocktails cocktails={cocktails} userIsLoggedIn={false}/>)
+    act(() => {
+        render(<List_Of_Cocktails cocktails={cocktails} userIsLoggedIn={false}/>)
+    })
 })
 
