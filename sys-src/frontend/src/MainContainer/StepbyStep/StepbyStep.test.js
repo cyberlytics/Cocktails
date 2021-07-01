@@ -1,7 +1,7 @@
 import StepbyStep from "./StepbyStep";
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect';
-import { fireEvent, getByText, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 test('StepbyStep render correctly', () => {
     //example for an cocktail object
@@ -57,7 +57,9 @@ test('StepbyStep render correctly', () => {
     render(<StepbyStep data={cocktail}/>)
   }); 
 
+
 test('activate instruction', () => {
+    //example for an cocktail object
     const cocktail = {
         "_id": "60bd22e28f4183529aad2d23",
         "name": "WhiteRussian",
