@@ -22,10 +22,12 @@ class RegisterForm extends Component {
         this.onKeyUp = this.handleKeypress.bind(this);
     }
 
+    //Make sure everything is accessible on the beginning
     componentDidMount() {
         this.resetForm();
     }
 
+    //Reset form
     resetForm() {
         this.setState({
             username: '',
@@ -35,6 +37,7 @@ class RegisterForm extends Component {
         })
     }
 
+    //method to pass to childs, which enables them to set state for username, password or password validation
     setInputValue(property, val) {
         this.setState({
             [property] : val
@@ -52,6 +55,7 @@ class RegisterForm extends Component {
             return;
         }
 
+        //When username, password and password validation were provided, then disable button and proceed
         this.setState({
             buttonDisabled : true
         })
@@ -70,7 +74,7 @@ class RegisterForm extends Component {
                 })
             });
             
-            //process result
+            //process result to json
             let result = await res.json();
 
             //Request successful
@@ -78,16 +82,19 @@ class RegisterForm extends Component {
                 alert("Registrierung erfolgreich");
                 window.location.href='/login';
             }
+            //if not successful then make alert with error text sent from api
             else if (result && result.success === false) {
                 this.setState({buttonDisabled: false});
                 alert(result.msg);
             }
+        //error handling
         } catch (error) {
             this.resetForm();
             console.log(error.message);
         }
     }
 
+    //Submit, when Enter Button was pressed
     handleKeypress = e => {
         if (e.key === "Enter") {
           this.handleSubmit();  
