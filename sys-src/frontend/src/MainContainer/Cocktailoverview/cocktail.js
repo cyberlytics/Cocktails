@@ -1,17 +1,10 @@
 //Import modules
-import React, {useState, useEffect} from 'react'
+import React, {useState } from 'react'
 import { apiurl } from '../../api';
 import "./style.css";
 
 const Cocktail = props => {
-    const [isFavourite, setIsFavourite] = useState();
-
-    useEffect( () => {
-        async function fetchCocktailsIDs(){
-            setIsFavourite(props.isFavourite);
-        }        
-        fetchCocktailsIDs();
-      },[]);
+    const [isFavourite, setIsFavourite] = useState(props.isFavourite);
 
     function outerContainerHandler(e) {
         window.location.href='/'+props.name
