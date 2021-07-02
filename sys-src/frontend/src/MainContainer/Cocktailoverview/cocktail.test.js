@@ -1,6 +1,6 @@
 import Cocktail from "./cocktail"
 import '@testing-library/jest-dom/extend-expect';
-import { fireEvent, getByText, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 describe("Test for cocktail element", () => {
 
