@@ -1,14 +1,15 @@
-import app from "./server.js"
-import mongodb from "mongodb"
-import dotenv from "dotenv"
-import CocktailsDAO from "./dao/cocktailsDAO.js"
+const app = require("./server.js")
+const mongodb = require("mongodb")
+const dotenv = require("dotenv")
+const CocktailsDAO = require("./dao/cocktailsDAO.js")
 
 dotenv.config()
 
-
 const MongoClient = mongodb.MongoClient
+
+//Create a connection to the MongoDB.
 MongoClient.connect( 
-    process.env.MONGODB_URI,
+    "mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
     {
         poolSize:5,
         wtimeout:2500,
@@ -20,8 +21,9 @@ MongoClient.connect(
     process.exit(1)
 })
 .then(async client => {
+    //Inject the DB
     await CocktailsDAO.injectDB(client)
-    app.listen(process.env.PORT, () => {
-        console.log(`listening on port ${process.env.PORT}`)
+    app.listen(5000, () => {
+        console.log(`listening on port 5000`)
     })
 })

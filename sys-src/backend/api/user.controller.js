@@ -1,16 +1,18 @@
-import bcrypt from 'bcrypt';
-import mongodb from 'mongodb';
+const bcrypt = require('bcrypt');
+const mongodb = require('mongodb');
 const ObjectID = mongodb.ObjectID;
-import Database from '../database/database.js';
+const Database = require('../database/database.js');
 
-export default class UserController{
+module.exports = class UserController{
 
+    ///Get the favourite Cocktails from a specific user
     static async getFavouriteCocktails(req, res) {
         let userid = req.params.id;
 
-        //Find the users object-id
-        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
-               
+        const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
+
+        //Check if user exists
         db.find("Users", { _id: ObjectID(userid) })
         .then (data => {
             if (data && data.length === 0) {
@@ -22,6 +24,7 @@ export default class UserController{
 
 
             else {
+                //Load all Cocktailobjects, wich is corresponding to the users Favourite and return it
                 Promise.all(
                     data[0].favourites.map(async (cocktail) => {
                         return await db.find("Recipes", { _id : ObjectID(cocktail) });
@@ -41,11 +44,14 @@ export default class UserController{
         }))
     }
 
+    //Set or unset a Cocktail to the users Favorite
     static async setFavouriteCocktail(req, res) {
         let userid = req.body.userid;
         let cocktailid = req.body.cocktail;
 
-        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
+        const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
+
         //Check if user exists
         db.find("Users", { _id: ObjectID(userid) })
         .then (data => {
@@ -56,27 +62,41 @@ export default class UserController{
                 })
             }
             else {
-                //If user already has favourited the cocktail: remove it
+                //If user already has favourited the cocktail, then remove it
                 if (data[0].favourites.some(item => item == cocktailid)) {
                     let newfavs = data[0].favourites.filter(item => item != cocktailid);
                     db.update("Users", { _id: ObjectID(userid)}, { favourites : newfavs})
-                    .then(res => {
-                        console.log("Update");
+                    .then(data => {
+                        res.json({
+                            success: true,
+                            msg: 'remove from Favourite'
+                        })
                     })
                     .catch(err => {
-                        console.log(err.message);
+                        console.log("ErrorMSG" + err.message);
+
+                        res.json({
+                            success: false,
+                            msg: err.message
+                        })
                     })                  
                 }
-                //If user hasn't favourited the cocktail: add it
+                //If user hasn't favourited the cocktail, then add it
                 else {
                     let tmp = data[0].favourites;
                     tmp.push(ObjectID(cocktailid));
                     db.update("Users", { _id: ObjectID(userid)}, { favourites : tmp})
-                    .then(res => {
-                        console.log("Update");
+                    .then(data => {
+                        res.json({
+                            success: true,
+                            msg: 'added to Favourite'
+                        })
                     })
                     .catch(err => {
-                        console.log(err.message);
+                        res.json({
+                            success: false,
+                            msg: err.message
+                        })
                     })    
                 }
             }})
@@ -86,11 +106,13 @@ export default class UserController{
         }))
     }
 
+    //register a new User
     static async registerNewUser(req, res) {
         let usr = req.body.username;
         let password = req.body.password;
         let passwordValidation = req.body.passwordValidation;
 
+        //check if password and password validation matches
         if (password !== passwordValidation) {
             res.json({
                 success: false,
@@ -98,6 +120,7 @@ export default class UserController{
             })
             return;
         }
+        //enforce password length of at least 8
         if (password.length <= 8) {
             res.json({
                 success: false,
@@ -105,7 +128,7 @@ export default class UserController{
             })
             return;
         }
-        //At least two numbers
+        //At least one number in password
         var regex = new RegExp("[0-9]");
         if (!regex.test(password)) {
             res.json({
@@ -114,7 +137,7 @@ export default class UserController{
             })
             return;
         }
-        //At least one special character
+        //At least one special character in password
         regex = new RegExp("[$&+,:;=?@#|'<>.^*()%!-]");
         if (!regex.test(password)) {
             console.log("sonderzeichen");
@@ -124,12 +147,14 @@ export default class UserController{
             })
             return;
         }
+        //hash the given password if security requirements are good
         let pwhash = bcrypt.hashSync(password, 9);
 
-        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
-
+        const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
         db.find("Users", { username : usr})
         .then(data => {
+            //Check if user already exists
             if (data && data.length !== 0) {
                 res.json({
                     success: false,
@@ -138,12 +163,14 @@ export default class UserController{
                 return;
             }
             else {
+                //when user is not existent, then create a new dataset with username and password
                 db.insert("Users", { username: usr, password: pwhash, status: "user", favourites : []})
                 .then(data => {
                     res.json({
                         success: true,
                     })
                 })
+                //error handling on insert
                 .catch(error => {
                     res.json({
                         success: false,
@@ -152,6 +179,7 @@ export default class UserController{
                 })
             }
         })
+        //error handling on find
         .catch(error => {
             res.json({
                 success: false,
@@ -159,4 +187,33 @@ export default class UserController{
             })
         })
     }
+
+    //Get a list of favourite Cocktails IDs from a specific user
+    static async getFavouriteCocktailsID(req, res) {
+        let userid = req.params.id;
+
+        const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
+
+        //Check if user exists
+        db.find("Users", { _id: ObjectID(userid) })
+        .then (data => {
+            if (data && data.length === 0) {
+                res.json({
+                    success: false,
+                    msg: 'No user with given id found'
+                })
+            }
+
+            else {
+                //returns the FavouritesIDs
+                res.json({success: true, cocktailid: data[0].favourites})
+            }
+        })
+        .catch(error => res.json({
+            success: false,
+            msg: 'Fehler beim Zugriff auf die Datenbank:' + error.message
+        }))
+    }
+
 }

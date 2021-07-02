@@ -18,9 +18,10 @@ class LoginForm extends Component {
             password: '',
             buttonDisabled: false
         };
-        this.onKeyUp = this.handleEnter.bind(this);
+        this.onKeyUp = this.handleKeypress.bind(this);
     }
 
+    //Reset form
     resetForm() {
         this.setState({
             username: '',
@@ -29,21 +30,18 @@ class LoginForm extends Component {
         })
     }
 
+    //Make sure form is accesible on the beginning
     componentDidMount() {
         this.resetForm();
     }
 
+    //method to pass to childs, which enables them to set state for username or password
     setInputValue(property, val) {
         this.setState({
             [property] : val
         })
     }
 
-    handleEnter(e) {
-        if (e.charCode === 13) {
-            this.handleSubmit();
-        }
-    }
 
     async handleSubmit() {
         if (!this.state.username) {
@@ -53,11 +51,13 @@ class LoginForm extends Component {
             return;
         }
 
+        //When username and password were provided, then disable button and proceed
         this.setState({
             buttonDisabled : true
         })
 
         try {
+            //make API-Call
             let res = await fetch(apiurl + '/login', {
                 method: "post",
                 headers: {
@@ -70,24 +70,31 @@ class LoginForm extends Component {
                 })
             });
             
-            //process result
+            //process result to json
             let result = await res.json();
 
             //Successful authenticated
             if (result && result.success) {
                 localStorage.setItem('isLoggedInId', result.id);
                 window.location.href='/';
+                return true;
             }
+            //if not successful then make alert with error text sent from api
             else if (result && result.success === false) {
-                //TODO: USER BENACHRICHTIGEN
+                alert(result.msg);
                 this.resetForm();
+                window.location.href='/login';
+                return false;
             }
+        //error handling
         } catch (error) {
-            console.log(error.message);
+            alert("Fehler:" + error.message);
             this.resetForm();
+            return false;
         }
     }
 
+    //Submit, when Enter Button was pressed
     handleKeypress = e => {
         if (e.key === "Enter") {
           this.handleSubmit();  
@@ -96,7 +103,7 @@ class LoginForm extends Component {
 
     render() { 
         return (
-            <div style={styles.styleDiv} className="login-form" onKeyPress={this.handleKeypress}>
+            <div style={styles.styleDiv} className="login-form" data-testid="LoginFormActive" onKeyPress={this.handleKeypress}>
                 <h1 style={styles.styleHeadline}>Login</h1>
                 <div style={styles.styleInputField}><IconTextField type="username" placeholder="Username" iconclass="fas fa-user"
                 value={this.state.username ? this.state.username : ''} onChange={ (val) => this.setInputValue('username', val)} /></div>
