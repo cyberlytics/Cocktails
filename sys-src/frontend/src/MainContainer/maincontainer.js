@@ -17,20 +17,13 @@ const MainContainer = props => {
             <BrowserRouter>
                 <Switch>
                     <Route path="/Favourites">
-                        {props.userIsLoggedIn ?
                         <FavouritesList cocktails={props.cocktails} userIsLoggedIn={props.userIsLoggedIn}/>
-                        :
-                        <h1>NICHT EINGELOGGT</h1>
-                        }
                     </Route>
                     <Route path="/LastCocktails">
-                        <h1>{props.userIsLoggedIn ? "LETZTE COCKTAILS" : "NICHT EINGELOGGT"}</h1>
                     </Route>
                     <Route path="/MyCocktails">
-                        <h1>{props.userIsLoggedIn ? "EIGENE COCKTAILS" : "NICHT EINGELOGGT"}</h1>
                     </Route>
                     <Route path="/CreateCocktail">
-                        <h1>{props.userIsLoggedIn ? "EIGENEN COCKTAIL ERSTELLEN" : "NICHT EINGELOGGT"}</h1>
                     </Route>
                     <Route path="/Login">
                         <LoginForm/>
