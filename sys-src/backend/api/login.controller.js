@@ -11,12 +11,14 @@ module.exports = class LoginController{
         let usr = req.body.username;
         let password = req.body.password;
 
-        //Find the users pw-hash
+        //Create Database Object
         const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
             "EasyCocktail");
         db.find("Users", { username : usr })
         .then (data => {
+            //check if username is found in database
             if (data && data.length === 1) {
+                //compare passwords
                 bcrypt.compare(password, data[0].password, (bcrypErr, verified) => {
                     //Correct Password
                     if (verified) {
@@ -43,6 +45,7 @@ module.exports = class LoginController{
                 })
             }
         })
+        //error handling
         .catch (error => {
             res.json({
                 success: false,
@@ -52,13 +55,14 @@ module.exports = class LoginController{
     }
 
     static async isLoggedIn(req, res, next) {
-        console.log("is user logged in")
         if (req.params.id != null) {
             const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
                 "EasyCocktail");
             db.find("Users", { _id : ObjectID(req.params.id) })
             .then (data => {
+                //check if username is found in database
                 if (data && data.length === 1) {
+                    //send ok when found
                     res.json({
                         success: true,
                         username: data[0].username
@@ -66,6 +70,7 @@ module.exports = class LoginController{
                     return true;
                 }
                 else {
+                    //send not ok when not found
                     res.json({
                         success: false,
                         msg: "Session ID not found"
@@ -73,6 +78,7 @@ module.exports = class LoginController{
                     return false;
                 }
             })
+            //error handling
             .catch (data => {
                 res.json({
                     success: false,
@@ -82,6 +88,7 @@ module.exports = class LoginController{
         }
     }
 
+    //Handling logout call
     static async logout(req, res) {
         let userid = req.body.userid;
 

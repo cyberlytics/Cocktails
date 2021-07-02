@@ -43,3 +43,9 @@
 .card{
   background-color: rgb(207, 181, 59);
 }
+
+.responsive {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+}

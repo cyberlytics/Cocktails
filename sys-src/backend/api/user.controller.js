@@ -107,6 +107,7 @@ module.exports = class UserController{
         let password = req.body.password;
         let passwordValidation = req.body.passwordValidation;
 
+        //check if password and password validation match
         if (password !== passwordValidation) {
             res.json({
                 success: false,
@@ -114,6 +115,7 @@ module.exports = class UserController{
             })
             return;
         }
+        //enforce password length of at least 8
         if (password.length <= 8) {
             res.json({
                 success: false,
@@ -121,7 +123,7 @@ module.exports = class UserController{
             })
             return;
         }
-        //At least one number
+        //At least one number in password
         var regex = new RegExp("[0-9]");
         if (!regex.test(password)) {
             res.json({
@@ -130,7 +132,7 @@ module.exports = class UserController{
             })
             return;
         }
-        //At least one special character
+        //At least one special character in password
         regex = new RegExp("[$&+,:;=?@#|'<>.^*()%!-]");
         if (!regex.test(password)) {
             console.log("sonderzeichen");
@@ -140,13 +142,14 @@ module.exports = class UserController{
             })
             return;
         }
+        //hash the given password if security requirements are good
         let pwhash = bcrypt.hashSync(password, 9);
 
         const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
             "EasyCocktail");
-
         db.find("Users", { username : usr})
         .then(data => {
+            //Check if user already exists
             if (data && data.length !== 0) {
                 res.json({
                     success: false,
@@ -155,12 +158,14 @@ module.exports = class UserController{
                 return;
             }
             else {
+                //when user is not existent, then create a new dataset with username and password
                 db.insert("Users", { username: usr, password: pwhash, status: "user", favourites : []})
                 .then(data => {
                     res.json({
                         success: true,
                     })
                 })
+                //error handling on insert
                 .catch(error => {
                     res.json({
                         success: false,
@@ -169,6 +174,7 @@ module.exports = class UserController{
                 })
             }
         })
+        //error handling on find
         .catch(error => {
             res.json({
                 success: false,

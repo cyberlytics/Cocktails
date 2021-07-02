@@ -2,9 +2,7 @@
 import React, { Component } from 'react';
 import "./style.css"
 
-//Import own UI-Elements
-
-
+// NavbarElements are only enabled if User is Logged in. If the User is Logged out it still renders though but not clickable.
 class NavBarElement extends Component {
     state = {  }
     render() { 

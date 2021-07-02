@@ -15,9 +15,9 @@ class App extends Component {
     state = {
         userIsLoggedIn : false,
         cocktails : [],
-        tempcocktails : [],
+        allcocktails : [],
     }
-    static tempcocktails
+    static allcocktails
 
     setValue(property, val) {
         this.setState({
@@ -29,12 +29,12 @@ class App extends Component {
         CocktailsDataService.getAll()
           .then(response => {
             this.setState({cocktails: response.data || []})
-            this.setState({tempcocktails: response.data})
+            this.setState({allcocktails: response.data})
           })
     }
 
     getSearch(val){
-        this.setState({cocktails: this.state.tempcocktails})
+        this.setState({cocktails: this.state.allcocktails})
         //Get array of favourited cocktail names
         var favouritedCocktails = this.state.cocktails.filter(cocktail => cocktail.favourite).map(cocktail => cocktail.name);
         //Add the favourite tag accordingly to all search result
@@ -70,6 +70,7 @@ class App extends Component {
             }
             }
             catch(e) {
+                self.setState({userIsLoggedIn : false});
                 console.log(e.message);
             }
         }
@@ -126,7 +127,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} tempcocktails={(this.state.tempcocktails)} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
+                <TopContainer userIsLoggedIn={this.state.userIsLoggedIn} allcocktails={(this.state.allcocktails)} onSearchFiltered={(val) => this.getSearch(val)} onLogout={(val) => this.handleLogout(val)}/>
                 <MainContainer userIsLoggedIn={this.state.userIsLoggedIn} cocktails={(this.state.cocktails)}/>
                 <BottomContainer/>
             </div>
