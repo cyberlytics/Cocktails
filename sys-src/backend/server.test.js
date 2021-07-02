@@ -18,8 +18,7 @@ describe("Server Test", () => {
             const response = await request(app)
                 .post('/api/logout/')
                 .send({
-                    userid: "60de3f4df9a2bd49d849ea78",
-                    cocktail: "60bd22e28f4183529aad2d23"
+                    userid: "60de3f4df9a2bd49d849ea78"
                 })
 
             let res = await JSON.parse(response.text);
@@ -149,7 +148,7 @@ describe("Server Test", () => {
                 expect(res.msg).toBe('No user with given id found')
             })
 
-            test('try to set Favorite Cocktail for an existing User', async () => {
+            test('try to set/remove Favorite Cocktail for an existing User. Attempt 1', async () => {
                 const response = await request(app)
                     .post('/api/user/setFavourite')
                     .send({
@@ -159,10 +158,13 @@ describe("Server Test", () => {
 
                 let res = await JSON.parse(response.text);
                 expect(res.success).toBe(true);
-                expect(res.msg).toBe('added to Favourite')
+
+                let isAddedOrDeleted = res.msg === 'added to Favourite' || res.msg === 'remove from Favourite';
+
+                expect(isAddedOrDeleted).toBe(true)
             })
 
-            test('try to remove Favorite Cocktail for an existing User', async () => {
+            test('try to set/remove Favorite Cocktail for an existing User. Attempt 2', async () => {
                 const response = await request(app)
                     .post('/api/user/setFavourite')
                     .send({
@@ -171,18 +173,27 @@ describe("Server Test", () => {
                     })
 
                 let res = await JSON.parse(response.text);
-
                 expect(res.success).toBe(true);
-                expect(res.msg).toBe('remove from Favourite')
+
+                let isAddedOrDeleted = res.msg === 'added to Favourite' || res.msg === 'remove from Favourite';
+
+                expect(isAddedOrDeleted).toBe(true)
             })
         });
     })
 
     describe('Testing Loginroutes', function () {
 
-        describe('test isLoggedIn route', function () {
+        describe('test isloggedin route', function () {
+            test( "is user logged in with",async () => {
 
-            test( "is user logged in",async () => {
+                const resp = await request(app)
+                    .post('/api/login/')
+                    .send({
+                        username: "johnNEW_test",
+                        password: "12345Hallo#"
+                    })
+
                 const response = await request(app)
                     .get("/api/login/60de3f4df9a2bd49d849ea78")
 
@@ -192,6 +203,39 @@ describe("Server Test", () => {
                 expect(res.success).toBe(true);
                 expect(typeof res.username).toBe('string')
             })
+        });
+
+        describe('test login route', function () {
+
+            test('', async () => {
+                const response = await request(app)
+                    .post('/api/login/')
+                    .send({
+                        username: "johnNEW_test",
+                        password: "12345Hallo#",
+                    })
+
+                expect(response.statusCode).toBe(200)
+
+                let res = await JSON.parse(response.text);
+                expect(res.success).toBe(true);
+                expect(typeof res.id).toBe('string')
+            });
+
+            test('', async () => {
+                const response = await request(app)
+                    .post('/api/login/')
+                    .send({
+                        username: "johnNEW_test",
+                        password: "123456789!",
+                    })
+
+                expect(response.statusCode).toBe(200)
+
+                let res = await JSON.parse(response.text);
+                expect(res.success).toBe(false);
+                expect(res.msg).toBe("Falscher Benutzername oder Passwort");
+            });
         });
     });
 })

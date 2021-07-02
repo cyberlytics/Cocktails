@@ -22,7 +22,6 @@ module.exports = class LoginController{
                     if (verified) {
                         res.json({
                             success: true,
-                            username: data[0].Username,
                             id: data[0]._id,
                         })
                         return;                         
@@ -53,7 +52,7 @@ module.exports = class LoginController{
     }
 
     static async isLoggedIn(req, res, next) {
-        console.log("logged in")
+        console.log("is user logged in")
         if (req.params.id != null) {
             const db = new Database("mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
                 "EasyCocktail");
@@ -62,7 +61,7 @@ module.exports = class LoginController{
                 if (data && data.length === 1) {
                     res.json({
                         success: true,
-                        username: data[0].Username
+                        username: data[0].username
                     })
                     return true;
                 }
