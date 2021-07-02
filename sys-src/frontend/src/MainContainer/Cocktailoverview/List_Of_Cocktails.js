@@ -23,7 +23,7 @@ const ListOfCocktails = props => {
 
           let result = await res.json();
 
-          if(result.cocktailid != undefined){
+          if(result.cocktailid !== undefined){
             setfavouritesIDs(result.cocktailid);
           }
         } catch (error) {
@@ -48,7 +48,7 @@ const ListOfCocktails = props => {
           <div>
             WIR helfen weiter!
           </div>
-          <img src={cocktailpic} alt="cocktailpic"/>
+          <img src={cocktailpic} alt="cocktailpic" className="responsive"/>
           </div>
         <div className="welcoming">
           Hier erhältst DU ausführliche Rezepte für alle gängigen Cocktails für DEINE Party

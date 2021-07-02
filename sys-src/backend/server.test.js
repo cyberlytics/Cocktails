@@ -207,7 +207,7 @@ describe("Server Test", () => {
 
         describe('test login route', function () {
 
-            test('', async () => {
+            test('login with an existing user', async () => {
                 const response = await request(app)
                     .post('/api/login/')
                     .send({
@@ -222,7 +222,7 @@ describe("Server Test", () => {
                 expect(typeof res.id).toBe('string')
             });
 
-            test('', async () => {
+            test('login with a wrong password', async () => {
                 const response = await request(app)
                     .post('/api/login/')
                     .send({

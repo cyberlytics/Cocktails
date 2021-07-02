@@ -7,7 +7,11 @@ import CocktailsList from './Cocktailoverview/List_Of_Cocktails';
 import FavouritesList from './favouriteslist/favouriteslist';
 import CreateRoutes from '../components/CreateRoutes';
 import RegisterForm from './RegisterForm/registerform';
+import Impressum from './Impressum/impressum';
+import Datenschutz from './Datenschutz/datenschutz';
 
+// All elements of the main container converge here
+// and the all the frontend routing happens here
 const MainContainer = props => {
     return (
         <div className="container">
@@ -15,20 +19,13 @@ const MainContainer = props => {
             <BrowserRouter>
                 <Switch>
                     <Route path="/Favourites">
-                        {props.userIsLoggedIn ?
                         <FavouritesList cocktails={props.cocktails} userIsLoggedIn={props.userIsLoggedIn}/>
-                        :
-                        <h1>NICHT EINGELOGGT</h1>
-                        }
                     </Route>
                     <Route path="/LastCocktails">
-                        <h1>{props.userIsLoggedIn ? "LETZTE COCKTAILS" : "NICHT EINGELOGGT"}</h1>
                     </Route>
                     <Route path="/MyCocktails">
-                        <h1>{props.userIsLoggedIn ? "EIGENE COCKTAILS" : "NICHT EINGELOGGT"}</h1>
                     </Route>
                     <Route path="/CreateCocktail">
-                        <h1>{props.userIsLoggedIn ? "EIGENEN COCKTAIL ERSTELLEN" : "NICHT EINGELOGGT"}</h1>
                     </Route>
                     <Route path="/Login">
                         <LoginForm/>
@@ -41,8 +38,14 @@ const MainContainer = props => {
                     </Route>
                     <Route path="/register">
                         <RegisterForm/>
-                    </Route>                    
-                    <CreateRoutes/>
+                    </Route>           
+                    <Route path="/Impressum">
+                        <Impressum/>
+                    </Route>
+                    <Route path="/Datenschutz">
+                        <Datenschutz/>
+                    </Route>         
+                    <CreateRoutes cocktails={props.cocktails}/>
                 </Switch>
             </BrowserRouter>
             </div>
