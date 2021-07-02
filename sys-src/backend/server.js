@@ -1,12 +1,13 @@
-import express from "express"
-import corse from "cors"
-import session from 'express-session';
+const express = require("express")
+const corse = require("cors")
+const session = require("express-session")
 
 //Routes
-import cocktails from "./api/cocktails.route.js"
-import login from "./api/login.route.js"
-import logout from "./api/logout.route.js";
-import user from "./api/user.route.js";
+const cocktails = require("./api/cocktails.route.js")
+const login = require("./api/login.route.js")
+const logout = require("./api/logout.route.js")
+const user = require("./api/user.route.js")
+
 
 const app = express()
 
@@ -40,4 +41,4 @@ app.use("/api/user", user)
 
 app.use("*", (req, res) => {res.status(400).json({error: "not found"})});
 
-export default app
+module.exports = app

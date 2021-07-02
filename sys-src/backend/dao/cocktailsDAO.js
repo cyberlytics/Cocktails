@@ -1,6 +1,6 @@
 let cocktails
 
-export default class CocktailsDAO{
+module.exports = class CocktailsDAO{
     //Injekten der Datenbank und laden der Datan
     static async injectDB(conn) {
         if(cocktails) 
@@ -9,7 +9,7 @@ export default class CocktailsDAO{
         }
 
         try{
-            cocktails = await conn.db(process.env.COCKTAILS_DB_NS).collection("Recipes")
+            cocktails = await conn.db("EasyCocktail").collection("Recipes")
         }
         catch(e){
             console.error(`Fehler in der cocktailsDAO, ${e}`)
