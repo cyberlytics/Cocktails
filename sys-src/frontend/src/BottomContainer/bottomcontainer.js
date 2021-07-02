@@ -11,8 +11,8 @@ class BottomContainer extends Component {
         return (
             <div className='row g-0' data-testid="BottomContainerId">
                 <div className='btn-group col-md-5 w-auto ms-auto'>
-                    <Impressum value={"Impressum"} href="#"></Impressum>
-                    <Datenschutz value={"Datenschutz"} href="#"></Datenschutz>
+                    <Impressum value={"Impressum"} href="#" redirect={event => window.location.href='/Impressum'}></Impressum>
+                    <Datenschutz value={"Datenschutz"} href="#" redirect={event => window.location.href='/Datenschutz'}></Datenschutz>
                 </div>
             </div>
         );

@@ -1,9 +1,6 @@
 //Import modules
 import React, { Component } from 'react';
 
-//Import own UI-Elements
-
-
 class Banner extends Component {
     state = {  }
     render() { 
