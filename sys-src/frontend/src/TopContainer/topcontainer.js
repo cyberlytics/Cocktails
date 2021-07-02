@@ -7,6 +7,7 @@ import NavBarElement from './NavigationBar/navbarelement';
 import LoginElement from './NavigationBar/loginelement';
 import SearchBar from './NavigationBar/searchbarelement';
 
+// All elements of the top container converge here
 class TopContainer extends Component {
     state = {  }
     render() { 
