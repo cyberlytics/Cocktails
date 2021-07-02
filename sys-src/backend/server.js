@@ -4,7 +4,7 @@ const session = require("express-session")
 
 //Routes
 const cocktails = require("./api/cocktails.route.js")
-const login = require("./api/cocktails.route.js")
+const login = require("./api/login.route.js")
 const logout = require("./api/logout.route.js")
 const user = require("./api/user.route.js")
 
