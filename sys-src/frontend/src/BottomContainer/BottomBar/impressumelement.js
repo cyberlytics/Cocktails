@@ -7,7 +7,7 @@ class Impressum extends Component {
     render() { 
         return (
             <div className="d-grid gap-2 d-md-flex justify-content-md-center background">
-                <button type="button" className="btn me-md-2">Impressum</button> 
+                <button type="button" className="btn me-md-2" onClick={this.props.redirect}>Impressum</button> 
             </div>
         );
     }
