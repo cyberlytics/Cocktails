@@ -5,6 +5,7 @@ const Database = require('../database/database.js');
 
 module.exports = class LoginController{
 
+    //login the user
     static async login(req, res) {
         console.log("logged in")
 
@@ -54,6 +55,7 @@ module.exports = class LoginController{
         })
     }
 
+    //check if user is already logged in
     static async isLoggedIn(req, res, next) {
         if (req.params.id != null) {
             const db = new Database("mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
