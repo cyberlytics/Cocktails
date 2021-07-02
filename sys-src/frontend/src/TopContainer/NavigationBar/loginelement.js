@@ -1,11 +1,8 @@
 //Import modules
 import React, { Component } from 'react';
-
-//Import own UI-Elements
-
-//Import local ressources
 import './style.css';
 
+// Determine with "userIsLoggedIn" if User is logged in/out and then render the Login/Logout Button
 class LoginElement extends Component {
     state = {  }
 
