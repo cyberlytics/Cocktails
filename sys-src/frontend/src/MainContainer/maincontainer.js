@@ -8,6 +8,8 @@ import FavouritesList from './favouriteslist/favouriteslist';
 import CreateRoutes from '../components/CreateRoutes';
 import RegisterForm from './RegisterForm/registerform';
 
+// All elements of the main container converge here
+// and the all the frontend routing happens here
 const MainContainer = props => {
     return (
         <div className="container">
