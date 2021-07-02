@@ -61,7 +61,7 @@ const Cocktail = props => {
 
     return (
 
-        <li key={props.name} className="col-lg-4 pb-1 btn" onClick= {event => outerContainerHandler(event)} id={"OuterContainer"}>
+        <li key={props.name} className="col-lg-4 col-md-6 pb-1 btn" onClick= {event => outerContainerHandler(event)} id={"OuterContainer"}>
             <div className="card border-dark mb-3 cocktailcontainer" >
             <h5 className="card-title fw-bold ">{props.name}</h5>
             {
