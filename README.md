@@ -10,6 +10,6 @@ Nach erfolgreicher Installation muss noch „Install_dependencies.bat" ausgefüh
 Ist alles fehlerfrei durchgelaufen, kann nun das Programm lokal mit „Run.bat“ gestartet werden.
 
 # Testumgebung
-Zum fehlerfreien Testen ist es nötig, dass die Backend-Anwendung in Betrieb ist. Dafür im Ordner "*/backend" den Befehl "npm start" ausführen.
+Um das Frontend fehlerfrei zu testen ist es nötig, dass die Backend-Anwendung in Betrieb ist. Dafür im Ordner "*/backend" den Befehl "npm start" ausführen.
 
-Es existieren Test-Suites für das Frontend und Backend getrennt. Die Tests können mit "npm test" im Ordner "*/frontend" oder "*/backend" jeweils getrennt gestartet werden. Mit dem Befehl "npm run test a -- --coverage" kann zusätzlich die Code-Coverage angezeigt werden.
+Es existieren getrennte Tests für Frontend und Backend. Die Tests können mit "npm test" im Ordner "*/frontend" oder "*/backend" jeweils getrennt gestartet werden. Mit dem Befehl "npm run test a -- --coverage" kann zusätzlich die Code-Coverage angezeigt werden.
