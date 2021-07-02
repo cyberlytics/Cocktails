@@ -7,6 +7,8 @@ import CocktailsList from './Cocktailoverview/List_Of_Cocktails';
 import FavouritesList from './favouriteslist/favouriteslist';
 import CreateRoutes from '../components/CreateRoutes';
 import RegisterForm from './RegisterForm/registerform';
+import Impressum from './Impressum/impressum';
+import Datenschutz from './Datenschutz/datenschutz';
 
 const MainContainer = props => {
     return (
@@ -41,7 +43,13 @@ const MainContainer = props => {
                     </Route>
                     <Route path="/register">
                         <RegisterForm/>
-                    </Route>                    
+                    </Route>           
+                    <Route path="/Impressum">
+                        <Impressum/>
+                    </Route>
+                    <Route path="/Datenschutz">
+                        <Datenschutz/>
+                    </Route>         
                     <CreateRoutes cocktails={props.cocktails}/>
                 </Switch>
             </BrowserRouter>
