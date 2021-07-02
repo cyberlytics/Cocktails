@@ -5,8 +5,9 @@ const CocktailsDAO = require("./dao/cocktailsDAO.js")
 
 dotenv.config()
 
-
 const MongoClient = mongodb.MongoClient
+
+//Create a connection to the MongoDB.
 MongoClient.connect( 
     "mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
     {
@@ -20,6 +21,7 @@ MongoClient.connect(
     process.exit(1)
 })
 .then(async client => {
+    //Inject the DB
     await CocktailsDAO.injectDB(client)
     app.listen(5000, () => {
         console.log(`listening on port 5000`)
