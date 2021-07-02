@@ -8,7 +8,7 @@ dotenv.config()
 
 const MongoClient = mongodb.MongoClient
 MongoClient.connect( 
-    process.env.MONGODB_URI,
+    "mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
     {
         poolSize:5,
         wtimeout:2500,
@@ -21,7 +21,7 @@ MongoClient.connect(
 })
 .then(async client => {
     await CocktailsDAO.injectDB(client)
-    app.listen(process.env.PORT, () => {
-        console.log(`listening on port ${process.env.PORT}`)
+    app.listen(5000, () => {
+        console.log(`listening on port 5000`)
     })
 })

@@ -6,11 +6,14 @@ const Database = require('../database/database.js');
 module.exports = class LoginController{
 
     static async login(req, res) {
+        console.log("logged in")
+
         let usr = req.body.username;
         let password = req.body.password;
 
         //Find the users pw-hash
-        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
+        const db = new Database("mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
         db.find("Users", { username : usr })
         .then (data => {
             if (data && data.length === 1) {
@@ -50,8 +53,10 @@ module.exports = class LoginController{
     }
 
     static async isLoggedIn(req, res, next) {
+        console.log("logged in")
         if (req.params.id != null) {
-            const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
+            const db = new Database("mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+                "EasyCocktail");
             db.find("Users", { _id : ObjectID(req.params.id) })
             .then (data => {
                 if (data && data.length === 1) {
@@ -80,6 +85,10 @@ module.exports = class LoginController{
 
     static async logout(req, res) {
         let userid = req.body.userid;
-        console.log("Logging out user:", userid);
+
+        res.json({
+            success: true,
+            msg: "logout successfull"
+        })
     }
 }

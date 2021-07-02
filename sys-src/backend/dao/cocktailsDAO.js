@@ -9,7 +9,7 @@ module.exports = class CocktailsDAO{
         }
 
         try{
-            cocktails = await conn.db(process.env.COCKTAILS_DB_NS).collection("Recipes")
+            cocktails = await conn.db("EasyCocktail").collection("Recipes")
         }
         catch(e){
             console.error(`Fehler in der cocktailsDAO, ${e}`)

@@ -9,7 +9,8 @@ module.exports = class UserController{
         let userid = req.params.id;
 
         //Find the users object-id
-        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
+        const db = new Database("mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
                
         db.find("Users", { _id: ObjectID(userid) })
         .then (data => {
@@ -45,7 +46,8 @@ module.exports = class UserController{
         let userid = req.body.userid;
         let cocktailid = req.body.cocktail;
 
-        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
+        const db = new Database("mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
         //Check if user exists
         db.find("Users", { _id: ObjectID(userid) })
         .then (data => {
@@ -60,11 +62,19 @@ module.exports = class UserController{
                 if (data[0].favourites.some(item => item == cocktailid)) {
                     let newfavs = data[0].favourites.filter(item => item != cocktailid);
                     db.update("Users", { _id: ObjectID(userid)}, { favourites : newfavs})
-                    .then(res => {
-                        console.log("Cocktail deleted");
+                    .then(data => {
+                        res.json({
+                            success: true,
+                            msg: 'remove from Favourite'
+                        })
                     })
                     .catch(err => {
-                        console.log(err.message);
+                        console.log("ErrorMSG" + err.message);
+
+                        res.json({
+                            success: false,
+                            msg: err.message
+                        })
                     })                  
                 }
                 //If user hasn't favourited the cocktail: add it
@@ -72,11 +82,17 @@ module.exports = class UserController{
                     let tmp = data[0].favourites;
                     tmp.push(ObjectID(cocktailid));
                     db.update("Users", { _id: ObjectID(userid)}, { favourites : tmp})
-                    .then(res => {
-                        console.log("Cocktail added");
+                    .then(data => {
+                        res.json({
+                            success: true,
+                            msg: 'added to Favourite'
+                        })
                     })
                     .catch(err => {
-                        console.log(err.message);
+                        res.json({
+                            success: false,
+                            msg: err.message
+                        })
                     })    
                 }
             }})
@@ -126,7 +142,8 @@ module.exports = class UserController{
         }
         let pwhash = bcrypt.hashSync(password, 9);
 
-        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
+        const db = new Database("mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
 
         db.find("Users", { username : usr})
         .then(data => {
@@ -165,7 +182,8 @@ module.exports = class UserController{
         console.log("ListIDs fetched");
 
         //Find the users object-id
-        const db = new Database(process.env.MONGODB_URI, process.env.COCKTAILS_DB_NS);
+        const db = new Database("mongodb+srv://Michael_MongoDB:***REMOVED***@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
+            "EasyCocktail");
                
         db.find("Users", { _id: ObjectID(userid) })
         .then (data => {
