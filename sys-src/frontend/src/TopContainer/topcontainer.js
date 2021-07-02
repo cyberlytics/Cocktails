@@ -6,7 +6,6 @@ import Banner from './Banner/banner';
 import NavBarElement from './NavigationBar/navbarelement';
 import LoginElement from './NavigationBar/loginelement';
 import SearchBar from './NavigationBar/searchbarelement';
-import "./style.css"
 
 class TopContainer extends Component {
     state = {  }
