@@ -8,7 +8,6 @@ const login = require("./api/login.route.js")
 const logout = require("./api/logout.route.js")
 const user = require("./api/user.route.js")
 
-
 const app = express()
 
 app.use(corse())
@@ -34,6 +33,7 @@ app.use(session({
     }
 }));
 
+//Bind routes to their controller
 app.use("/api/login", login);
 app.use("/api/v1/cocktailsmixer/cocktails", cocktails);
 app.use("/api/logout", logout);
