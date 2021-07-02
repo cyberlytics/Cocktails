@@ -2,11 +2,11 @@ import { useState } from 'react';
 import Pagination from './Pagination'
 import "./style.css"
 
+//returns the picture with the ingredients and calories from the selected cocktail
+//includes the step by step pagination
 const StepbyStep = props => {
-    const[currentStep, setCurrentStep] = useState(props.data.steps[0]);
-
-    const paginate = (stepNumber) => setCurrentStep(stepNumber)
-
+    
+    //set the pagination active if How-To-Mix button is clicked
     const [instructionactive, setinstructionactive] = useState(false)
     const onClick = () => setinstructionactive(true)
 
@@ -20,13 +20,13 @@ const StepbyStep = props => {
                     {                        
                         props.data.ingredients.map( (ingredient, i) => (
                         <div key={`ingredient-test-${i}`}>
-                            {ingredient.quantity.quantity}
+                            {ingredient.quantity.quantity}{" "}
                             {ingredient.quantity.unit} : {" "}
                             <b>{ingredient.name}</b> 
                         </div>
                     ))
                     }
-                    {props.data.calories.amount}
+                    {props.data.calories.amount}{" "}
                     {props.data.calories.unit} : {" "}
                     <b>Kalorien</b>
                 </h3>
@@ -34,14 +34,8 @@ const StepbyStep = props => {
             <div className="col">
                 <button className="btn goldenbtn mb-4 mt-4" onClick={onClick}>How-To-Mix</button>
                 { instructionactive ? 
-                <div>
-                    <ul className='list-group mb-4'>
-                        <div className="text-white">
-                            {currentStep}
-                        </div>
-                    </ul>
-
-                <Pagination steps={props.data.steps} paginate={paginate} currentStep={currentStep}></Pagination>
+                <div data-testid="PaginationActiveTest">
+                    <Pagination steps={props.data.steps}/>               
                 </div>
                 : null 
                 }

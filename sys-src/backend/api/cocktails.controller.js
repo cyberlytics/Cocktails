@@ -1,6 +1,8 @@
-import CocktailsDAO from "../dao/cocktailsDAO.js"
+const CocktailsDAO = require("../dao/cocktailsDAO.js")
 
-export default class CocktailsController{
+module.exports = class CocktailsController{
+
+    //Get all Cocktails from the Server
     static async apiGetCocktails(req, res, next) {
         const cocktails = await CocktailsDAO.getCocktails()
         res.json(cocktails)

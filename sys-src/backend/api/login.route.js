@@ -1,9 +1,12 @@
-import express from "express"
-import LoginController from "./login.controller.js";
+const express = require("express")
+const LoginController = require("./login.controller.js");
 
 const router = express.Router()
 
+//route to check if user is logged in
 router.route("/:id").get(LoginController.isLoggedIn);
+
+//route to login the user
 router.route("/").post(LoginController.login);
 
-export default router   
+module.exports = router   
