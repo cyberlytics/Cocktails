@@ -5,13 +5,14 @@ const Database = require('../database/database.js');
 
 module.exports = class UserController{
 
+    ///Get the favourite Cocktails from a specific user
     static async getFavouriteCocktails(req, res) {
         let userid = req.params.id;
 
-        //Find the users object-id
         const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
             "EasyCocktail");
-               
+
+        //Check if user exists
         db.find("Users", { _id: ObjectID(userid) })
         .then (data => {
             if (data && data.length === 0) {
@@ -23,6 +24,7 @@ module.exports = class UserController{
 
 
             else {
+                //Load all Cocktailobjects, wich is corresponding to the users Favourite and return it
                 Promise.all(
                     data[0].favourites.map(async (cocktail) => {
                         return await db.find("Recipes", { _id : ObjectID(cocktail) });
@@ -42,12 +44,14 @@ module.exports = class UserController{
         }))
     }
 
+    //Set or unset a Cocktail to the users Favorite
     static async setFavouriteCocktail(req, res) {
         let userid = req.body.userid;
         let cocktailid = req.body.cocktail;
 
         const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
             "EasyCocktail");
+
         //Check if user exists
         db.find("Users", { _id: ObjectID(userid) })
         .then (data => {
@@ -58,7 +62,7 @@ module.exports = class UserController{
                 })
             }
             else {
-                //If user already has favourited the cocktail: remove it
+                //If user already has favourited the cocktail, then remove it
                 if (data[0].favourites.some(item => item == cocktailid)) {
                     let newfavs = data[0].favourites.filter(item => item != cocktailid);
                     db.update("Users", { _id: ObjectID(userid)}, { favourites : newfavs})
@@ -77,7 +81,7 @@ module.exports = class UserController{
                         })
                     })                  
                 }
-                //If user hasn't favourited the cocktail: add it
+                //If user hasn't favourited the cocktail, then add it
                 else {
                     let tmp = data[0].favourites;
                     tmp.push(ObjectID(cocktailid));
@@ -102,12 +106,13 @@ module.exports = class UserController{
         }))
     }
 
+    //register a new User
     static async registerNewUser(req, res) {
         let usr = req.body.username;
         let password = req.body.password;
         let passwordValidation = req.body.passwordValidation;
 
-        //check if password and password validation match
+        //check if password and password validation matches
         if (password !== passwordValidation) {
             res.json({
                 success: false,
@@ -183,14 +188,14 @@ module.exports = class UserController{
         })
     }
 
+    //Get a list of favourite Cocktails IDs from a specific user
     static async getFavouriteCocktailsID(req, res) {
         let userid = req.params.id;
-        console.log("ListIDs fetched");
 
-        //Find the users object-id
         const db = new Database("mongodb+srv://Michael_MongoDB:bYGrn4drdZOMoH6h@teamblaucluster.sttqh.mongodb.net/EasyCocktail?retryWrites=true&w=majority",
             "EasyCocktail");
-               
+
+        //Check if user exists
         db.find("Users", { _id: ObjectID(userid) })
         .then (data => {
             if (data && data.length === 0) {
@@ -201,6 +206,7 @@ module.exports = class UserController{
             }
 
             else {
+                //returns the FavouritesIDs
                 res.json({success: true, cocktailid: data[0].favourites})
             }
         })

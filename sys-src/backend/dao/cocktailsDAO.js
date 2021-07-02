@@ -1,23 +1,25 @@
 let cocktails
 
 module.exports = class CocktailsDAO{
-    //Injekten der Datenbank und laden der Datan
-    static async injectDB(conn) {
+    //Creates a new DB Instance and fetch the Recipes-collection
+    //Actually there is no need to load more then once, because we
+    //can not create or delete a cocktail yet
+    static async injectDB(client) {
         if(cocktails) 
         {
             return
         }
 
         try{
-            cocktails = await conn.db("EasyCocktail").collection("Recipes")
+            cocktails = await client.db("EasyCocktail").collection("Recipes")
         }
         catch(e){
             console.error(`Fehler in der cocktailsDAO, ${e}`)
         }
     }
 
-    //Holt die Liste der aktuellen Datenbank
-    //Wird später noch ausgebaut, um darin suchen zu können
+
+    //returns the List of all cocktails, that is actually in the DB
     static async getCocktails(){
         let courser
         try{
