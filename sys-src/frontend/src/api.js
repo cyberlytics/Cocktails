@@ -1,1 +1,1 @@
-export const apiurl = 'http://localhost:5000/api';
+export const apiurl = 'https://webteamblauapi.wildes-steinwerk.de/api';

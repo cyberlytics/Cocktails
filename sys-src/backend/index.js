@@ -23,7 +23,7 @@ MongoClient.connect(
 .then(async client => {
     //Inject the DB
     await CocktailsDAO.injectDB(client)
-    app.listen(5000, () => {
+    app.listen(process.env.PORT, () => {
         console.log(`listening on port 5000`)
     })
 })

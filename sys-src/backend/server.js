@@ -13,14 +13,16 @@ const app = express()
 app.use(corse())
 app.use(express.json())
 
+
 // Allow Api Access for webpage
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Credentials', false);
     next();
 });
+
 
 app.use(session({
     key: '2sdfsdfjh55k2jnabccf2e',
@@ -39,6 +41,10 @@ app.use("/api/v1/cocktailsmixer/cocktails", cocktails);
 app.use("/api/logout", logout);
 app.use("/api/user", user)
 
-app.use("*", (req, res) => {res.status(400).json({error: "not found"})});
+//app.use("*", (req, res) => {res.status(400).json({error: "not found"})});
+
+app.get('/', (req, res) => {
+    res.send('Hello to Memories API')
+})
 
 module.exports = app
